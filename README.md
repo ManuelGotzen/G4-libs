@@ -1,7 +1,6 @@
-Philips Hue 
-G4 Library  
+G4 Framework Library 
+Philips Hue  
 =============
   
 * Command
-
 
