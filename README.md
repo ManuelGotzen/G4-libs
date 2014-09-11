@@ -1,5 +1,5 @@
 # Philips Hue  
-##### G4 Library  
+**G4 Library**
 =============
   
 * Command
