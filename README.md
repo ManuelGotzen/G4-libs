@@ -1,7 +1,7 @@
 > __G4__ Framework  
   **Library**  
 
-###### _Adobe AIR / ActionScript_ 
+###### *Adobe AIR / ActionScript* 
 # Hue AIR
 =============
   
