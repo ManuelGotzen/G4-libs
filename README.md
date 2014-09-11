@@ -35,10 +35,14 @@ Das Basis Modul des _Connectors_ ermöglicht, die Verwendung deiner Lichter und 
   
 ====  
 
-  :link:
+  
   :open_file_folder:  
   :page_facing_up:  
 
 
   
-![G4](http://bit.ly/G4-ico-48x48)  
+![GitHub](http://http://bit.ly/G4-GitHub-ico-32x32)  
+:link: [G4 Stream - Assets - Common [Ico: Lib]](http://bit.ly/G4-assets-common-ico)  
+
+
+
