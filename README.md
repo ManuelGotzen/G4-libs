@@ -1,7 +1,7 @@
-> __G4__ Framework  
-  **Library**  
+> :id: __G4__ Framework  
+  :octocat: **Library**  
 
-###### ~Adobe AIR / ActionScript~ 
+###### : Adobe AIR / ActionScript 
 # Hue AIR
 =============
   
