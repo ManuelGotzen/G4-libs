@@ -41,8 +41,7 @@ Das Basis Modul des _Connectors_ ermöglicht, die Verwendung deiner Lichter und 
 
 
   
-![GitHub](http://bit.ly/G4-GitHub-ico-32x32-R2&w=32&h=32)  
+![GitHub](w=3,&h=32,http://bit.ly/G4-GitHub-ico-32x32-R2)  
 :link: [G4 Stream - Assets - Common [Ico: Lib]](http://bit.ly/G4-assets-common-ico)  
-
 
 
