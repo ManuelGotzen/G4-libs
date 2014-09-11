@@ -1,2 +1,4 @@
-hue-libs
-========
+Philips Hue  
+G4 Library  
+==========
+  
