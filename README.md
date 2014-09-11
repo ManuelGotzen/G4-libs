@@ -1,10 +1,9 @@
 > __G4__ Framework  
   **Library**  
 
-Philips Hue  
+Hue AIR  
+# Adobe AIR / ActionScript
 =============
-  
-# **Hue AIR**  
   
     
 Verbinde Deine [Philips Hue Brücke](http://my.meethue.com/de-de/) mittels [AS3](http://de.m.wikipedia.org/wiki/ActionScript) / [AIR](http://get.adobe.com/air).  
