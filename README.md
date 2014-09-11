@@ -41,3 +41,4 @@ Das Basis Modul des _Connectors_ ermöglicht, die Verwendung deiner Lichter und 
 
 
   
+![G4](http://bit.ly/G4-ico-48x48)  
