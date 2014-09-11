@@ -1,9 +1,9 @@
   __G4__ :octocat: Framework  
-  **Library** :open_file_folder:  
-
+  **Library**  
+  
 
   
-###### Adobe AIR / ActionScript 
+###### Adobe AIR / ActionScript
 # Hue AIR  
 =============
   
@@ -33,8 +33,9 @@ Das Basis Modul des _Connectors_ ermöglicht, die Verwendung deiner Lichter und 
   
 ====  
 
-
-   :page_facing_up:  
+  :link:
+  :open_file_folder:  
+  :page_facing_up:  
 
 
   
