@@ -1,3 +1,7 @@
+GET /users/:username/orgs
+
+
+
 :  
 ** RADIO
 __Die DELUXE Radio Kanäle__  
