@@ -3,7 +3,9 @@
 __Die DELUXE Radio Kanäle__  
 
 
-[Image Logo DELUXE RADIO]
+[Image]:http://www.deluxemusic.tv/fileadmin/_processed_/csm_Deluxe_Radio_7d241619d0.png/
+
+ 
 # DELUXE RADIO
 =============
 
