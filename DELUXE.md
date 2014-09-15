@@ -7,7 +7,7 @@ GET /users/:username/orgs
 __Die DELUXE Radio Kanäle__  
 
 
-[Image]:http://www.deluxemusic.tv/fileadmin/_processed_/csm_Deluxe_Radio_7d241619d0.png/
+[DELUXE MUSIC](http://www.deluxemusic.tv/fileadmin/_processed_/csm_Deluxe_Radio_7d241619d0.png )
 
  
 # DELUXE RADIO
