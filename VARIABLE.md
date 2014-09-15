@@ -1,6 +1,7 @@
 .
 # [Bundle]: 
    (/https://bitly.com/bundles/manuelgotzen/d/ "Variable"/)
+©
 
 
 Link Sammlung von Link Verweisen mit 
