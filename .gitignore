@@ -23,12 +23,15 @@ folder.txt
 Thumbs.db
 Desktop.ini
 favicon.ico
+
 .ico
 .cache
 .project
 .settings
 .tmproj
 .idea
+
+.htaccess
 
 # Folders to ignore
 _
