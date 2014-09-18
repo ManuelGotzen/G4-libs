@@ -32,6 +32,10 @@ favicon.ico
 
 # Folders to ignore
 _
+_bin
+_history
+_lnk
+_profiles
 _implements
 _res
 
