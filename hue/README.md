@@ -20,7 +20,7 @@ Dieses Projekt besteht aus drei Teilen:
   
 ## Copyright and license
 
-Code and documentation copyright 2011-2014 Manuel Gotzen, Inc. Code released under [the MIT license](LICENSE). Docs released under [Creative Commons](docs/LICENSE).
+Code and documentation copyright 2011-2014 Manuel Gotzen, Inc. Code released under [the MIT license](LICENSE). Docs released under [Creative Commons](../docs/LICENSE).
   
   
   
