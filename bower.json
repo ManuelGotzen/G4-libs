@@ -1,0 +1,6 @@
+{
+  "name": "G4-libs",
+  "dependencies": {
+    "octicons": "*"
+  }
+}
