@@ -47,6 +47,7 @@ $ext = substr($id, strrpos($id, '.') + 1);
  */
 $ext = strtolower($ext);
  
+
 if ($ext == "jpeg")
     $ext = "jpg";
  
