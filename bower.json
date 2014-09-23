@@ -1,6 +1,26 @@
 {
-  "name": "G4-libs",
-  "dependencies": {
-    "octicons": "*"
-  }
+    "name": "G4-libs",
+    "version": "3.1.4",
+    "ignore": [
+        "**/.*",
+
+        "_",
+        "_common",
+
+        "examples",
+        "node_modules",
+        "bower_components",
+        "test",
+        "tests"
+    ],
+    "dependencies": {
+        "octicons": "*",
+        "bootstrap": ">= 3.0.0"
+    },
+    "homepage": "https://github.com/manuelgotzen/G4-libs",
+    "authors": [
+        "Manuel Gotzen <Manuel.Gotzen@gmail.de>"
+    ],
+    "description": "G4 LIB Lightbox gallery plugin for Bootstrap 3",
+    "license": "GNU GENERAL PUBLIC LICENSE"
 }
