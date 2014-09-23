@@ -3,8 +3,8 @@ __G4__ :octocat: Framework
 ###### <sub>**Library** / Common / Icons</sub>  
 
   
-[Emoji Cheat](http://www.emoji-cheat-sheet.com) 
-[Emoji en-Wiki](https://en.wikipedia.org/wiki/Emoji)
+[Emoji Cheat](http://www.emoji-cheat-sheet.com)  
+[Emoji Wiki](https://en.wikipedia.org/wiki/Emoji)  
 
 
 
