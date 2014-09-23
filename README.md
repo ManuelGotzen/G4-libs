@@ -23,7 +23,7 @@ The G4 Icons set and associated files are distributed by Manuel Gotzen under the
   
 =====
 <sub>
-&copy; 2014, [Owener][gitHub]  
+&copy; 2014, [Owner][gitHub]  
 Distributed by Manuel Gotzen under the [CC BY-ND-NC 1.0](http://creativecommons.org/licenses/by-nc-nd/3.0/de/) licence. Company logos in icons are copyright of their respective owners.  
 </sub>
 
