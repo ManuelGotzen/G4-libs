@@ -1,8 +1,9 @@
-__G4__ :octocat: Framework  
+__G4__ :octocat: Framework
 ### LIB
 ###### <sub>**Library** / Common </sub>  
+=====
   
-![G4 Icons Preview](preview.png)
+[](![G4 Icons Preview](preview.png))
 
 A free set of PNG icons in eleven sizes, black and white, from 16px to 4096px, with an accompanying list of colour codes. See The icons and colours at [G4UI.org](http://manuelgotzen.github.io/G4-libs).
 
