@@ -1,10 +1,13 @@
 # Ignore docs files
 _
 # _gh_pages
+_docs
 _site
 .ruby-version
 info.txt
 folder.txt
+
+
 
 # Numerous always-ignore extensions
 *.diff
@@ -18,6 +21,8 @@ folder.txt
 *.vi
 *~
 
+
+
 # OS or Editor folders
 .DS_Store
 ._*
@@ -30,9 +35,13 @@ favicon.ico
 .project
 .settings
 .tmproj
+
+# Jetbrains
 .idea
 
 .htaccess
+
+
 
 # Folders to ignore
 _
@@ -44,3 +53,9 @@ _implements
 _res
 
 _hue
+
+
+
+# Node
+node_modules
+.DS_Store
