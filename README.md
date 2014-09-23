@@ -19,7 +19,7 @@ P.S. If you have experience with best-practice optimisation and minification of 
 
 ## Licence
 
-The G4 Icons set and associated files are distributed by Manuel Gotzen under the [LICENCE](http://github.com/ManuelGotzen/G4-Icons/LICENCE). Company logos and icons may be subject to trademark and copyright conditions. Always check before deploying other companies’ branding on your own website.
+The __G4 Icons__ set and associated files are distributed by Manuel Gotzen under the [LICENCE](http://github.com/ManuelGotzen/G4-Icons/LICENCE). Company logos and icons may be subject to trademark and copyright conditions. Always check before deploying other companies’ branding on your own website.
   
   
 =====
