@@ -4,6 +4,7 @@ __G4__ :octocat: Framework
 
   
 [Emoji Cheat](http://www.emoji-cheat-sheet.com) 
+[Emoji en-Wiki](https://en.wikipedia.org/wiki/Emoji)
 
 
 
