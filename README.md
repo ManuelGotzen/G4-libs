@@ -5,5 +5,5 @@ Bibkiothek
 
 <span class ="octicon octicon-flame"></span>
 
-<raw>Emoji.find_by_alias("cat").raw</raw>
+<Code>Emoji.find_by_alias("cat").raw</code>
 
