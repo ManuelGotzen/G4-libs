@@ -1,7 +1,6 @@
 # Ignore docs files
 _
 # _gh_pages
-_docs
 _site
 .ruby-version
 info.txt
@@ -54,6 +53,7 @@ _res
 
 _hue
 
+docs
 
 
 # Node
