@@ -1,6 +1,6 @@
 __G4__ :octocat: Framework
 ###### <sub>**Library** / Common </sub>
-### LIB  
+### LIB
 =====
   
 [](![G4 Icons Preview](preview.png))
