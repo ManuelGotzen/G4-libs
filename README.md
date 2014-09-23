@@ -1,5 +1,7 @@
-# G4 Icons
-
+__G4__ :octocat: Framework  
+# LIB  
+###### <sub>**Library** / Common </sub>
+  
 ![G4 Icons Preview](preview.png)
 
 A free set of PNG icons in eleven sizes, black and white, from 16px to 4096px, with an accompanying list of colour codes. See The icons and colours at [G4UI.org](http://manuelgotzen.github.io/G4-libs).
@@ -16,11 +18,12 @@ P.S. If you have experience with best-practice optimisation and minification of 
 
 ## Licence
 
-The Simple Icons set and associated files are distributed by Dan Leech under the [LICENCE](http://github.com/ManuelGotzen/G4-Icons/LICENCE). Company logos and icons may be subject to trademark and copyright conditions. Always check before deploying other companies’ branding on your own website.
-
+The G4 Icons set and associated files are distributed by Manuel Gotzen under the [LICENCE](http://github.com/ManuelGotzen/G4-Icons/LICENCE). Company logos and icons may be subject to trademark and copyright conditions. Always check before deploying other companies’ branding on your own website.
+  
+  
 =====
 <sub>
-&copy; 2014, Manuel Gotzen  
+&copy; 2014, [Owener][gitHub]  
 Distributed by Manuel Gotzen under the [CC BY-ND-NC 1.0](http://creativecommons.org/licenses/by-nc-nd/3.0/de/) licence. Company logos in icons are copyright of their respective owners.  
 </sub>
 
