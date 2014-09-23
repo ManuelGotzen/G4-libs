@@ -1,5 +1,5 @@
 __G4__ :octocat: Framework  
-_ Icons
+* Icons
 ##### <sub>**Library** / Common / Icons</sub>
     
 [Emoji Cheat](http://www.emoji-cheat-sheet.com)  
