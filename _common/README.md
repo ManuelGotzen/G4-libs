@@ -1,20 +1,25 @@
 __G4__ :octocat: Framework  
-# Icons
-##### <sub>**Library** / Common / Icons</sub>  
-    
+# Help  
+###### <sub>**Library** / Common / Icons</sub>
+  
 [Emoji Cheat](http://www.emoji-cheat-sheet.com)  
 [Emoji Wiki](https://en.wikipedia.org/wiki/Emoji)  
 
 
 # GitHub
-##### <sub>**Help** / Be Social</sub>
+####### <sub>**Help** / Be Social</sub>
   
 Discover interesting projects from across GitHub in the Explore and [Trending](https://github.com/trending) sections. You can then star projects that you find interesting and want to come back to later—just visit your [Stars](https://github.com/stars) page to see all your starred projects.
   
     
-##### **Syntax** / MarkDown  
+###### <sub>**Syntax** / MarkDown</sub>
   
 [Basics](http://daringfireball.net/projects/markdown/basics/)  
+
+
+
+
+
 
 
 
