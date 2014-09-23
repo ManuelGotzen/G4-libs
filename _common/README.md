@@ -1,6 +1,6 @@
 __G4__ :octocat: Framework  
   
-  :octicon-octoface:
+  :octoface:
 
   
   
