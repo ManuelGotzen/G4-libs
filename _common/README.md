@@ -22,13 +22,13 @@ __G4__ :octocat: Framework
   
   
 # GitHub :octocat:  
-###### <sub>**Help** / Be Social</sub>
+###### <sub>**Organisations** / Respositories</sub>
   
 [G4 | LIB](http://manuelgotzen.github.io/G4-libs/)  
-[G4 | LIB Wiki](http://manuelgotzen.github.io/G4-libs/wiki)  
+**[G4 | LIB Wiki](http://manuelgotzen.github.io/G4-libs/wiki)**  
   
 [G4 | Icons](http://manuelgotzen.github.io/G4-Icons/)  
-[G4 | Icons Wiki](http://manuelgotzen.github.io/G4-Icons/wiki)  
+**[G4 | Icons Wiki](http://manuelgotzen.github.io/G4-Icons/wiki)**  
   
   
 ###### <sub>**Help** / Be Social</sub>
