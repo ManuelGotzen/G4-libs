@@ -1,8 +1,4 @@
-__G4__ :octocat: Framework  
-  
-  
-
-  
+__G4__ :octocat: Framework   
 ###### <sub>**Library** / Common / Icons</sub>
 Icons
 =============
