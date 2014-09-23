@@ -1,6 +1,6 @@
 __G4__ :octocat: Framework  
-==Icons
-##### <sub>**Library** / Common / Icons</sub>
+# Icons
+##### <sub>**Library** / Common / Icons</sub>  
     
 [Emoji Cheat](http://www.emoji-cheat-sheet.com)  
 [Emoji Wiki](https://en.wikipedia.org/wiki/Emoji)  
