@@ -4,6 +4,10 @@ __G4__ :octocat: Framework
 =============
   
 
+[Emoji Cheat](http://www.emoji-cheat-sheet.com)  
+
+
+
 <link rel="stylesheet" href="https://octicons.github.com/components/octicons/octicons/octicons.css>
 <span class="octicon octicon-flame"></span>
 [](octicon-alert)
