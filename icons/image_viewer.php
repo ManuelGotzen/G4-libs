@@ -75,6 +75,7 @@ switch ($ext)
 /**
  * Case to check if file is displayable, by default, or if additional processing is needed
  */
+
 switch ($mode)
 {
     case "svg_to_png":
@@ -91,7 +92,7 @@ switch ($mode)
 /**
  * @see bootstrap.php
  */
-require_once("../../bootstrap.php");
+//require_once("../../bootstrap.php");
 config_error_reporting(0);
  
 /**
