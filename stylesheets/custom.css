@@ -1,14 +1,27 @@
-/*******************************************************************************
-Octicons 
-by [GitHub](https://github.com/github/octicons)
-***************************************************************/
+
+/***************************************************************************
+ G4     : Respository [Folk]
+        : Octicons
+ Owner  : [GitHub](https://github.com/github/octicons)
+***************************************************************************/
+
 
 @import url(http://octicons.github.com/components/octicons/octicons/octicons.css);
 
 
-/*******************************************************************************
-Octicons 
-by [GitHub](https://github.com/github/octicons)
-***************************************************************/
+/***************************************************************************
+ G4    : Common Settings CSS Implements 
+ SDK   : Icon List 
+ Owner : [Manuel Gotzen](https://github.com/ManuelGotzen/G4-libs/ .. /~~~~.css)
+***************************************************************************/
+
 
 @import url(https://raw.githubusercontent.com/manuelgotzen/G4-libs/master/_common/_css/_implements/_icon-list.css);
+
+
+
+/***************************************************************************
+ G4    : Common Settings CSS Implements 
+ SDK   : 
+ Owner : [Manuel Gotzen](https://github.com/ManuelGotzen/G4-libs/ .. /~~~~.css)
+***************************************************************************/
