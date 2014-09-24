@@ -19,9 +19,63 @@
 @import url(https://raw.githubusercontent.com/manuelgotzen/G4-libs/master/_common/_css/_implements/_icon-list.css);
 
 
+/***************************************************************************
+ G4    : Common Settings CSS Implements 
+       : Customize
+ Owner : [Manuel Gotzen](https://github.com/ManuelGotzen/G4-libs/ .. /~~~~.css)
+
+ 
+***************************************************************************/
+
+
+
 
 /***************************************************************************
  G4    : Common Settings CSS Implements 
- SDK   : 
- Owner : [Manuel Gotzen](https://github.com/ManuelGotzen/G4-libs/ .. /~~~~.css)
+       : Customize
+         Owner Annotations from Source CSS from including Respository 
+
+ 
 ***************************************************************************/
+
+
+
+			div.row > div > div.row {
+				margin-bottom: 15px;
+			}
+
+			body {
+				padding-bottom: 50px;
+			}
+
+			div.top-header {
+				margin-bottom:100px;
+			}
+
+			h3.page-header {
+				margin-top: 50px;
+			}
+
+			figure {
+				position: relative;
+			}
+
+			figure figcaption {
+				font-size: 22px;
+				color: #fff;
+				text-decoration: none;
+				bottom: 10px;
+				right: 20px;
+				position: absolute;
+				background-color: #000;
+			}
+			code {
+				white-space: pre-wrap;       /* css-3 */
+				white-space: -moz-pre-wrap;  /* Mozilla, since 1999 */
+				white-space: -pre-wrap;      /* Opera 4-6 */
+				white-space: -o-pre-wrap;    /* Opera 7 */
+				word-wrap: break-word;       /* Internet Explorer 5.5+ */
+			}
+
+
+
