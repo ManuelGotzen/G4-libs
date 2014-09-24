@@ -47,7 +47,8 @@ Discover interesting projects from across GitHub in the Explore and [Trending](h
 ###### <sub>**Gravatar** / Icons</sub>
   
   
-![gee-ministry](http://0.gravatar.com/userimage/71444084/94f0499a845c2ec0b4afd07833f67b34?s=20)  
+<ul class=icons-list>
+<li>![gee-ministry](http://0.gravatar.com/userimage/71444084/94f0499a845c2ec0b4afd07833f67b34?s=20)</li>  
 ![tape](http://1.gravatar.com/userimage/71444084/a9e5f9101efa2071f3de85799ff002e4?s=20)  
 ![gee](http://0.gravatar.com/userimage/71444084/93f4372052513ed9b9796f39acce68f8?s=20)  
 ![musikdenker](http://0.gravatar.com/userimage/71444084/ae1c0620742ab122c99b24b15d661dab?=16)  
@@ -66,9 +67,9 @@ Discover interesting projects from across GitHub in the Explore and [Trending](h
 
 ![gitHub-inv](http://1.gravatar.com/userimage/71444084/dd5d15ce5483f39550c7f679d7c2556e?s=20)  
 
-![Info](http://2.gravatar.com/userimage/71444084/3117fa9b13b048cf353a20826a561630c?s=20)  
-![health](http://0.gravatar.com/userimage/71444084/ccb30df797253f2bd1a7d6c6cd225b77?s=20)  
-
+* ![Info](http://2.gravatar.com/userimage/71444084/3117fa9b13b048cf353a20826a561630c?s=20)  
+* ![health](http://0.gravatar.com/userimage/71444084/ccb30df797253f2bd1a7d6c6cd225b77?s=20)  
+</ul>
 
 
 
