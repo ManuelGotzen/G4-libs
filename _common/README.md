@@ -42,6 +42,10 @@ Discover interesting projects from across GitHub in the Explore and [Trending](h
   
 [Basics](http://daringfireball.net/projects/markdown/basics/)  
   
+
+# Syntax
+
+[Bash Shell](https://de.wikipedia.org/wiki/Bash_(Shell) )
   
   
 ###### <sub>**Gravatar** / Icons</sub>
