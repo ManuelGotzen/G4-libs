@@ -41,6 +41,7 @@ Distributed by Manuel Gotzen under the [CC BY-ND-NC 1.0](http://creativecommons.
 
 
 
+
 <span class ="octicon octicon-flame"></span>
 
 [](Emoji.find_by_alias("cat").raw)
