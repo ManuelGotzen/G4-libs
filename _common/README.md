@@ -1,9 +1,12 @@
 __G4__ :octocat: Framework  
+
 # Help  
 ###### <sub>**Library** / Common / Cheats</sub>
   
-[Emoji Cheat](http://www.emoji-cheat-sheet.com)  
-[Emoji Wiki](https://en.wikipedia.org/wiki/Emoji)  
+[Emoji Cheat](http://www.emoji-cheat-sheet.com ) 
+[Emoji Sources](http://www.unicode.org/Public/UCD/latest/ucd/EmojiSources.txt ) 
+[Emoji Wiki](https://en.wikipedia.org/wiki/Emoji ) 
+[Emoji PDF](http://www.unicode.org/charts/PDF/Unicode-7.0/U70-1F600.pdf )
   
   
 # Fonts
@@ -43,9 +46,31 @@ Discover interesting projects from across GitHub in the Explore and [Trending](h
 [Basics](http://daringfireball.net/projects/markdown/basics/)  
   
 
-# Syntax
+# Wiki
 
-[Bash Shell](https://de.wikipedia.org/wiki/Bash_(Shell) )
+[Bash Shell](https://de.wikipedia.org/wiki/Bash_(Shell) ) 
+  
+[Emoji Wiki](https://en.wikipedia.org/wiki/Emoji ) 
+[Miscellaneous Symbols](https://en.wikipedia.org/wiki/Miscellaneous_Symbols )
+[Resin Identification Code](https://en.wikipedia.org/wiki/Resin_identification_code )
+[Geometric Shapes](https://en.wikipedia.org/wiki/Geometric_Shapes )
+  
+
+# Unicode
+###### <sub>**Charts** / 7.0</sub>
+  
+
+[Charts](http://www.unicode.org/charts/ ) 
+[Charts Last Resort](http://www.unicode.org/charts/lastresort.html ) 
+[Charts PDF](http://www.unicode.org/charts/PDF/Unicode-7.0/ ) 
+  
+  
+###### <sub>**PDF** / 7.0</sub>
+  
+[U70-1F600 Emoticons](http://www.unicode.org/charts/PDF/Unicode-7.0/U70-1F600.pdf ) 
+  
+[U2500 Box Drawing](http://www.unicode.org/charts/PDF/U2500.pdf ) 
+[U2580 Box Elements](http://www.unicode.org/charts/PDF/U2580.pdf ) 
   
   
 ###### <sub>**Gravatar** / Icons</sub>
