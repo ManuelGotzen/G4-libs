@@ -380,6 +380,8 @@
                     <h3 class="page-header" id="global-galleries">Example #12: Global galleries</h3>
                     <p>If you're gallery images have different parents you may wish to have all images with the same gallery tag to open regardless of their parent. To do this, set <code>data-parent</code> to the highest element you know of - on this page it is the <code>div.container</code>.</p>
                     <p>You can also leave the <code>data-parent</code> attribute empty, and it will default to <code>document.body</code>. This example uses a combination of the two.</p>
+
+
                     <div class="row">
                         <div class="col-sm-4">
                             <a href="http://25.media.tumblr.com/de356cd6570d7c26e73979467f296f67/tumblr_mrn3dc10Wa1r1thfzo6_1280.jpg" data-gallery="global-gallery" data-parent="" data-toggle="lightbox">
@@ -417,8 +419,13 @@
 
                     <h3 class="page-header" id="check-is-image">Example #13: No-extension images / presume everything is an image</h3>
                     <p>If the images you are linking to have no extension, the lightbox cannot detect that is an image; therefore you need to tell the lightbox what <code>data-type</code> it is.</p>
-                    <p><a href="http://nla.gov.au/nla.pic-an22199070-gd600n" data-title="Force image display" data-footer="The remote of this modal has no extension: http://nla.gov.au/nla.pic-an22199070-gd600n" data-toggle="lightbox" data-type="image">Click here for an image, but with no extension.</a></p>
+
+                    <p><a href="http://loveyouboo.de/G4/_user/manuel_gotzen" data-title="Force image display" data-footer="The remote of this modal has no extension: http://loveyouboo.de/G4/_user/manuel_gotzen" data-toggle="lightbox" data-type="image">Click here for an image, but with no extension.</a></p>
+
                     <p><a href="http://nla.gov.au/nla.pic-an22199070-gd600n" data-toggle="lightbox">This link is missing the type attribute, and will not work.</a></p>
+
+                    <p><a href="http://www.youtube.com/watch?v=" data-toggle="lightbox" data-type="image">This link is linking to a YouTube video, but forcing an image.</a></p>
+
                     <p><a href="http://www.youtube.com/watch?v=b0jqPvpn3sY" data-toggle="lightbox" data-type="image">This link is linking to a YouTube video, but forcing an image.</a></p>
 
 
