@@ -1,0 +1,2003 @@
+#
+#					
+#					G4UI
+#				
+#	
+#					Default .htaccess with basic dynamic UI-CSS
+#					.htaccess-Steuerung für ( Root / Stamm- ) Verzeichnis "/" 
+#
+#
+#
+# 	Copyright: 		Manuel Gotzen
+# 	Autor: 			Manuel Gotzen
+# 					
+# 	Release: 		4.2.3		Alpha
+# 	Last Update: 	2014-10-01, 2013-05-18
+# 			
+#
+#
+#	History: 		2013-05-16 	Server und Domainanpassung. UI liegt nun auf ui.farbdenker.net (!!!)
+#			2012-05-27
+#					2012-05-21 Neue optionale Datei Unterscheidungen. Somit können bsp. ".rtf-" und ".css-Dokumente" als "text/plain" im Browser angezeigt werden. 							    
+# 					2012-05-19 Neue moderne Media-Ikon-Symbole
+# 					2012-05-18 Framework erweitert, CSS dem G4UI CSS Template angepasst, .htaccess erweitert
+# 					2012-05-17 Neue besondere Ikon-Symbole und Beschreibungen
+# 					2012-05-13
+# 					2012-04-07
+# 					2012-03-24
+#					2011-11-02
+#					2011-10-20
+#
+#
+#
+# 	################################################################################################################################
+# 	################################################################################################################################
+# 	--------------------------------------------------------------------------------------------------------------------------------
+#	
+#
+
+
+	RewriteEngine On
+	RewriteBase /
+
+
+#	RewriteCond %{HTTP_HOST} ^(ui\.)?loveyouboo\.de
+
+	RewriteCond %{REQUEST_FILENAME} !-d
+	RewriteCond %{REQUEST_FILENAME} !-f
+
+	RewriteRule ([a-z0-9-]+)/? http://$1.loveyouboo.de [R=301,NC,L]
+
+	RewriteCond %{HTTP_HOST} ^([^.]*).(de|com|net|org/)
+	RewriteRule ^.*$ http://www.%1.%2/G4/%{REQUEST_URI} [R=301,L]
+
+
+
+
+<IfModule mod_rewrite.c>
+
+	RewriteEngine On
+	RewriteBase /
+
+#	RewriteCond %{REQUEST_FILENAME} !-d
+#	RewriteCond %{REQUEST_FILENAME} !-f
+#	RewriteRule ([a-z0-9-]+)/? http://ui.loveyouboo.de/$1 [R=301,NC,L]
+
+#	RewriteRule ^_etc/ - [L]
+	RewriteCond %{HTTP_HOST} ^(ui\.)?loveyouboo\.de
+#	RewriteCond %{HTTP_HOST} !^$	
+#	RewriteCond %{HTTP_HOST} !^(ui\.)*
+#	RewriteCond %{HTTP_HOST} ^([^.]*).(de|com|net|org/)
+
+#	RewriteCond %{REQUEST_FILENAME} !-d
+#	RewriteCond %{REQUEST_FILENAME} !-f
+#	RewriteRule ^.*$ http://www.google.de/%{REQUEST_URI}/%1 [R=301,NC,L]
+#	RewriteRule ^.*$ http://ui.%{REQUEST_URI}/%1 [R=301,L]
+	
+	RewriteCond %{REQUEST_FILENAME} !-d
+	RewriteCond %{REQUEST_FILENAME} !-f
+	RewriteRule ([a-z0-9-]+)/? http://$1.loveyouboo.de [R=301,NC,L]
+
+
+
+#	RewriteCond %{HTTP_HOST} ^(www\.)?domain\.com
+#	RewriteCond %{REQUEST_FILENAME} !-d
+#	RewriteCond %{REQUEST_FILENAME} !-f
+#	RewriteRule ([a-z0-9-]+)/? http://$1.domain.com [R=301,NC,L]
+
+
+
+#	RewriteCond %{HTTP_HOST} !^www..*
+#	RewriteCond %{HTTP_HOST} !^$
+#	RewriteCond %{HTTP_HOST} ^([^.]*).(com|com/)
+#	RewriteRule ^.*$ http://www.%1.%2%{REQUEST_URI} [R=301,L]
+
+
+# 	If subdomain pt or whois and folder port-scanner redirect to pt.gwebtools.com/scanner-porta, with parameters
+#	RewriteCond %{HTTP_HOST} ^(pt|whois)\.gwebtools\.com
+#	RewriteRule ^port-scanner/* http://pt.gwebtools.com/scanner-porta$1 [R=301,L]
+
+</IfModule>
+
+
+
+
+# 	################################################################################################################################
+# 	################################################################################################################################
+# 	--------------------------------------------------------------------------------------------------------------------------------
+#	
+#
+# 	Der Modul-Anweisungs-Block betrifft nur den "Apache Server". 
+# 	So lassen sich Fall-Unterscheidungen für den "localhost" indirket ausschliessen.
+# 	Steuerelemente und Direktive AUSSERHALB der Module werden vom "localhost" UND vom "Apache Server" (weiter)verarbeiten.
+
+
+
+
+
+# 	################################################################################################################################
+# 	################################################################################################################################
+# 	--------------------------------------------------------------------------------------------------------------------------------
+#	
+#
+
+
+
+
+#
+# 	The following lines prevent .htaccess and .htpasswd files from being 
+# 	viewed by Web clients. 
+#
+<FilesMatch "^\.ht">
+    Order allow,deny
+    Deny from all
+    Satisfy All
+</FilesMatch>
+
+
+
+
+
+# 	################################################################################################################################
+# 	################################################################################################################################
+# 	--------------------------------------------------------------------------------------------------------------------------------
+#	
+#
+
+
+
+
+
+
+# 	--------------------------------------------------------------------------------------------------------------------------------
+#	IndexOptions FancyIndexing IconHeight=16 IconWidth=16 NameWidth=10 DescriptionWidth=35 ScanHTMLTitles SuppressLastModified 
+	
+
+	Options +Indexes +MultiViews +FollowSymlinks 
+
+
+
+#	.	.	.	.	.	.	.	.	.	.	.	.	.	.	.	.	.	.	.	.	.	.	.	.	.	.	.	.	.	.	.	.	.
+#
+#	ENABLE MMAP DIRECTIVE
+#
+#	Verwende Memory-Mapping, um Dateien während der Auslieferung zu lesen
+#	
+#	o	Default: Off
+#
+#	Documents:
+#	http://httpd.apache.org/docs/2.0/mod/core.html
+	
+#	EnableMMAP-Direktive Off
+
+
+
+
+#	.	.	.	.	.	.	.	.	.	.	.	.	.	.	.	.	.	.	.	.	.	.	.	.	.	.	.	.	.	.	.	.	.
+# 	
+# 	SECURE APPLICATION
+# 	
+# 	Lasse PHP Code wie unbekannte Typen aussehen
+# 	
+# 	
+
+	AddType application/x-httpd-php .bop .foo .133t
+
+
+
+#	.	.	.	.	.	.	.	.	.	.	.	.	.	.	.	.	.	.	.	.	.	.	.	.	.	.	.	.	.	.	.	.	.
+#
+#	REMOVE HANDLER DIRECTIVE
+#
+
+	AddHandler server-parsed .html 
+
+
+
+
+#	.	.	.	.	.	.	.	.	.	.	.	.	.	.	.	.	.	.	.	.	.	.	.	.	.	.	.	.	.	.	.	.	.
+#
+#	REMOVE INPUT FILTER DIRECTIVE
+#
+#	RemoveOutputFilter pdf
+#	RemoveType .pdf
+#
+# 	RemoveInputFilter Directive
+# 	
+#	AddInputFilter			> > > http://httpd.apache.org/docs/2.0/mod/mod_mime.html#addinputfilter
+#	SetInputFilter			> > > http://httpd.apache.org/docs/2.0/mod/core.html#setinputfilter
+#	
+#	<Directory /www/data/>
+#		SetOutputFilter INCLUDES
+#	</Directory> 
+#
+
+
+<FilesMatch ".(txt|rtf)$">
+#	REMOVE INPUT FILTER DIRECTIVE
+	RemoveOutputFilter txt rtf
+	RemoveType .txt .rtf	
+	RemoveInputFilter Directive	
+	
+# 	DECLARE SetOutputFilter	
+	AddType application/x-httpd-php .txt .rtf
+
+#	REMOVE HANDLER DIRECTIVE
+	AddHandler server-parsed .txt .rtf
+	AddType text/* .txt
+	AddType text/plain .rtf	
+	AddIconByType (RTF,http://loveyouboo.de/G4/_common/_assets/icons/dlf/text.gif) text/plain
+	AddIconByType (TXT,http://oveyouboo.de/G4/_common/_assets/icons/dlf/sig.gif) text/*
+	Header set content-type "text/plain; charset=utf-8"	
+	Header append Vary User-Agent env=!dont-vary
+</FilesMatch>
+
+<FilesMatch ".(css)$">	
+#	REMOVE INPUT FILTER DIRECTIVE	
+	RemoveOutputFilter css
+	RemoveType .css	
+	RemoveInputFilter Directive	
+	
+# 	DECLARE SetOutputFilter	
+#	AddType application/x-httpd-php .css
+	AddType text/css .css
+
+#	REMOVE HANDLER DIRECTIVE
+	AddHandler server-parsed .css
+	AddIconByType (CSS,http://loveyouboo.de/G4/_common/_assets/icons/dlf/css.png) text/css	
+	Header set content-type "text/css; charset=ISO-8859-1"	
+#	Header set content-type "text/plain; charset=utf-8"	
+#	Header append Vary User-Agent env=!dont-vary
+</FilesMatch>
+
+#<FilesMatch "\.(x?html|css)$">
+#	DECLARE SetOutputFilter
+#	AddType text/html .css
+#	Header append Vary User-Agent env=!dont-vary
+#</FilesMatch>
+
+
+# 	1 Month for all your static assets
+<FilesMatch ".(ico|pdf|flv|jpg|jpeg|png|gif|js|css|swf)$">
+	Header set Cache-Control "max-age=2592000, public"
+</FilesMatch>
+
+# 	1 DAYS for rss feeds and robots
+<FilesMatch ".(xml|txt)$">
+ 	Header set Cache-Control "max-age=86400, public, must-revalidate"
+</FilesMatch>
+  
+# 		4 HOURS for your real articles files
+<FilesMatch ".(html|htm)$">
+ 	Header set Cache-Control "max-age=14400, must-revalidate"
+	Header set X-UA-Compatible "IE=7"	
+</FilesMatch>
+
+
+
+#	.	.	.	.	.	.	.	.	.	.	.	.	.	.	.	.	.	.	.	.	.	.	.	.	.	.	.	.	.	.	.	.	.
+#
+#	REMOVE ENCODING DIRECTIVE
+#
+
+	AddIconByEncoding (CMP,http://loveyouboo.de/G4/_common/_assets/icons/dlf/compressed.gif) x-compress x-gzip
+	
+
+
+#	.	.	.	.	.	.	.	.	.	.	.	.	.	.	.	.	.	.	.	.	.	.	.	.	.	.	.	.	.	.	.	.	.
+#
+#	ALIAS 
+#
+
+
+
+<IfModule alias_module>
+#	<IfModule mime_module>
+	# 	mod_mime.c
+
+    #
+    # Redirect: Allows you to tell clients about documents that used to 
+    # exist in your server's namespace, but do not anymore. The client 
+    # will make a new request for the document at its new location.
+    # Example:
+
+    # Redirect permanent /foo http://ui.loveyouboo.de
+
+    Redirect permanent /kunde http://kunde.farbdenker.de
+
+    # Redirect permanent /header "/header.html"
+
+
+    #
+    # Alias: Maps web paths into filesystem paths and is used to
+    # access content that does not live under the DocumentRoot.
+    # Example:
+    # Alias /webpath /full/filesystem/path
+    #
+    # If you include a trailing / on /webpath then the server will
+    # require it to be present in the URL.  You will also likely
+    # need to provide a <Directory> section to allow access to
+    # the filesystem path.
+
+
+#    Alias /header.html "localhost/ui/header.html"
+#    Alias /readme.html "localhost/ui/readme.html"
+		
+
+#	<Directory "localhost/ui/">
+#		# DocumentRoot "http://localhost/ui/"
+#        Options Indexes FollowSymLinks Includes ExecCGI	
+#        AllowOverride All
+#        # AllowOverride None
+#        # AllowOverride AuthConfig
+#        Order allow,deny
+#        Allow from all	
+#        HeaderName header.html
+#    	# ReadmeName readme.html	
+#	<Directory>
+
+
+		
+# 	</IfModule>
+</IfModule>
+	
+
+#	.	.	.	.	.	.	.	.	.	.	.	.	.	.	.	.	.	.	.	.	.	.	.	.	.	.	.	.	.	.	.	.	.
+#
+#	TIME OUT DIRECTIVE
+#
+
+
+
+#	.	.	.	.	.	.	.	.	.	.	.	.	.	.	.	.	.	.	.	.	.	.	.	.	.	.	.	.	.	.	.	.	.
+#
+#	USE CANONICAL NAME DIRECTIVE
+#
+#	Documents: 
+#	http://httpd.apache.org/docs/2.0/mod/core.html#usercanonicalname
+#
+
+
+
+<IfModule mod_autoindex.c>
+
+# 	FancyIndexing is whether you want fancy directory indexing or standard
+# 	
+
+
+ 	IndexOptions FancyIndexing
+#	IndexOptions Charset=UTF-8 
+#	IndexOptions Type=text/plain 
+#	IndexOptions DescriptionWidth=30
+	IndexOptions DescriptionWidth=76
+	IndexOptions FoldersFirst 
+#	IndexOptions HTMLTable 
+#	IndexOptions IconsAreLinks
+	IndexOptions IconHeight=16 
+#	IndexOptions IconHeight=24	
+	IndexOptions IconWidth=16
+#	IndexOptions IconWidth=24 
+	IndexOptions IgnoreCase 
+	IndexOptions -IgnoreClient 
+#	IndexOptions NameWidth=51
+	IndexOptions NameWidth=* 
+	IndexOptions ScanHTMLTitles
+#	IndexOptions SuppressColumnSorting
+#	IndexOptions SuppressDescription
+#  	IndexOptions SuppressHTMLPreamble 
+#  	IndexOptions SuppressIcon 
+#  	IndexOptions SuppressLastModified 
+#  	IndexOptions SuppressRules 
+#  	IndexOptions SuppressSize 
+#  	IndexOptions TrackModified 
+#  	IndexOptions VersionSort 
+
+	IndexOrderDefault Ascending Name
+
+
+#	AddType text/html .html
+ 
+ 	#	Source:
+	#	http://www.456bereastreet.com/archive/201103/x-ua-compatible_and_html5/
+	#	http://httpd.apache.org/docs/current/mod/mod_headers.html
+	
+	#	Header set X-UA-Compatible "IE=edge"
+	Header set X-UA-Compatible "IE=7"		
+	
+	# 	, IE=100, IE=9, IE=8, chrome=1"
+	
+#	HeaderName http://ui.loveyouboo.de/header.html
+#	HeaderName /header.html 
+
+	HeaderName header.html 
+
+
+#	ReadmeName http://ui.loveyouboo.de/readme.html
+#	ReadmeName /readme.html 
+
+	ReadmeName readme.html 
+
+
+	  
+</IfModule>
+# 	
+# 	End of indexing directives.
+
+
+
+
+
+
+
+#
+# 	################################################################################################################################
+# 	################################################################################################################################
+# 	--------------------------------------------------------------------------------------------------------------------------------
+#	
+#
+
+
+#	.	.	.	.	.	.	.	.	.	.	.	.	.	.	.	.	.	.	.	.	.	.	.	.	.	.	.	.	.	.	.	.	.
+#
+#	ICON SELFDEFINE OVERVIEW
+#	
+
+
+	AddIcon http://ui.loveyouboo.de/G4/_common/_assets/icons/dlf/aco-cs.png aco-cs.png
+	AddIcon http://ui.loveyouboo.de/G4/_common/_assets/icons/dlf/aco-farbdenker.png aco-farbdenker.png 
+	AddIcon http://ui.loveyouboo.de/G4/_common/_assets/icons/dlf/aco.png aco.png 
+	AddIcon http://ui.loveyouboo.de/G4/_common/_assets/icons/dlf/alert-black.png alert-black.png
+	AddIcon http://ui.loveyouboo.de/G4/_common/_assets/icons/dlf/alert-farbdenker.png alert-farbdenker.png 
+	AddIcon http://ui.loveyouboo.de/G4/_common/_assets/icons/dlf/alert.png alert.png 
+	AddIcon http://ui.loveyouboo.de/G4/_common/_assets/icons/dlf/archive.png archive.png
+	AddIcon http://ui.loveyouboo.de/G4/_common/_assets/icons/dlf/ase-cs.png ase-cs.png 
+	AddIcon http://ui.loveyouboo.de/G4/_common/_assets/icons/dlf/ase-farbdenker.png ase-farbdenker.png
+	AddIcon http://ui.loveyouboo.de/G4/_common/_assets/icons/dlf/ase.png ase.png
+
+	AddIcon http://ui.loveyouboo.de/G4/_common/_assets/icons/dlf/bg.gif bg.gif
+	AddIcon http://ui.loveyouboo.de/G4/_common/_assets/icons/dlf/binary.png binary.png 
+	
+	AddIcon http://ui.loveyouboo.de/G4/_common/_assets/icons/dlf/copyright.png copyright.png 
+	AddIcon http://ui.loveyouboo.de/G4/_common/_assets/icons/dlf/css.png css.png 
+	
+	AddIcon http://ui.loveyouboo.de/G4/_common/_assets/icons/dlf/dirup.png dirup.png 
+	AddIcon http://ui.loveyouboo.de/G4/_common/_assets/icons/dlf/desktop.png desktop.png 	
+	 
+	AddIcon http://ui.loveyouboo.de/G4/_common/_assets/icons/dlf/eps.gif eps.gif
+	AddIcon http://ui.loveyouboo.de/G4/_common/_assets/icons/dlf/exe.gif exe.gif  
+	AddIcon http://ui.loveyouboo.de/G4/_common/_assets/icons/dlf/e-eva.png e-eva.png
+	 
+	AddIcon http://ui.loveyouboo.de/G4/_common/_assets/icons/dlf/fh10-mx.png fh10-mx.png 
+	AddIcon http://ui.loveyouboo.de/G4/_common/_assets/icons/dlf/fh10.gif fh10.gif  
+	AddIcon http://ui.loveyouboo.de/G4/_common/_assets/icons/dlf/fh9.png fh9.png   
+	AddIcon http://ui.loveyouboo.de/G4/_common/_assets/icons/dlf/fla.gif fla.gif
+	AddIcon http://ui.loveyouboo.de/G4/_common/_assets/icons/dlf/fla.png fla.png
+  	     
+	AddIcon http://ui.loveyouboo.de/G4/_common/_assets/icons/dlf/folder-aco.png folder-aco.png
+	AddIcon http://ui.loveyouboo.de/G4/_common/_assets/icons/dlf/folder-ase.png folder-ase.png  
+	AddIcon http://ui.loveyouboo.de/G4/_common/_assets/icons/dlf/folder-blog.png folder-blog.png   
+	AddIcon http://ui.loveyouboo.de/G4/_common/_assets/icons/dlf/folder-css.png folder-css.png 
+	AddIcon http://ui.loveyouboo.de/G4/_common/_assets/icons/dlf/folder-doc.png folder-doc.png
+	AddIcon http://ui.loveyouboo.de/G4/_common/_assets/icons/dlf/folder-download-ttf.png folder-download-ttf.png 
+	AddIcon http://ui.loveyouboo.de/G4/_common/_assets/icons/dlf/folder-download.png folder-download.png
+	AddIcon http://ui.loveyouboo.de/G4/_common/_assets/icons/dlf/folder-etc.png folder-etc.png
+	AddIcon http://ui.loveyouboo.de/G4/_common/_assets/icons/dlf/folder-external.png folder-external.png
+	AddIcon http://ui.loveyouboo.de/G4/_common/_assets/icons/dlf/folder-image-assets.png folder-image-assets.png 
+	AddIcon http://ui.loveyouboo.de/G4/_common/_assets/icons/dlf/folder-implements.png folder-implements.png
+	AddIcon http://ui.loveyouboo.de/G4/_common/_assets/icons/dlf/folder-lnk.png folder-lnk.png
+	AddIcon http://ui.loveyouboo.de/G4/_common/_assets/icons/dlf/folder-media-logo.png folder-media-logo.png 
+	AddIcon http://ui.loveyouboo.de/G4/_common/_assets/icons/dlf/folder-media.png folder-media.png 
+	AddIcon http://ui.loveyouboo.de/G4/_common/_assets/icons/dlf/folder-net.png folder-net.png 
+	AddIcon http://ui.loveyouboo.de/G4/_common/_assets/icons/dlf/folder-openx.png folder-openx.png 
+	AddIcon http://ui.loveyouboo.de/G4/_common/_assets/icons/dlf/folder-pattern-blue.png folder-pattern-blue.png
+	AddIcon http://ui.loveyouboo.de/G4/_common/_assets/icons/dlf/folder-pattern-blueReflection.png folder-pattern-blueReflection.png
+	AddIcon http://ui.loveyouboo.de/G4/_common/_assets/icons/dlf/folder-pattern-gray.png folder-pattern-gray.png 
+	AddIcon http://ui.loveyouboo.de/G4/_common/_assets/icons/dlf/folder-pattern-green.png folder-pattern-green.png
+	AddIcon http://ui.loveyouboo.de/G4/_common/_assets/icons/dlf/folder-pattern-orange.png folder-pattern-orange.png 
+	AddIcon http://ui.loveyouboo.de/G4/_common/_assets/icons/dlf/folder-pattern-red.png folder-pattern-red.png 
+	AddIcon http://ui.loveyouboo.de/G4/_common/_assets/icons/dlf/folder-pattern-yellow.png folder-pattern-yellow.png   
+	AddIcon http://ui.loveyouboo.de/G4/_common/_assets/icons/dlf/folder-patterns.png folder-patterns.png
+	AddIcon http://ui.loveyouboo.de/G4/_common/_assets/icons/dlf/folder-scripts.png folder-scripts.png
+	AddIcon http://ui.loveyouboo.de/G4/_common/_assets/icons/dlf/folder-settings.png folder-settings.png 
+	AddIcon http://ui.loveyouboo.de/G4/_common/_assets/icons/dlf/folder-socialNetwork.png folder-socialNetwork.png
+	AddIcon http://ui.loveyouboo.de/G4/_common/_assets/icons/dlf/folder-teamViewer.png folder-teamViewer.png
+	AddIcon http://ui.loveyouboo.de/G4/_common/_assets/icons/dlf/folder-ttf.png folder-ttf.png
+	AddIcon http://ui.loveyouboo.de/G4/_common/_assets/icons/dlf/folder-upload.png folder-upload.png
+	AddIcon http://ui.loveyouboo.de/G4/_common/_assets/icons/dlf/folder-user.png folder-user.png  
+	AddIcon http://ui.loveyouboo.de/G4/_common/_assets/icons/dlf/folder-wallpaper.png folder-wallpaper.png  
+	AddIcon http://ui.loveyouboo.de/G4/_common/_assets/icons/dlf/folder.png folder.png  
+
+	AddIcon http://ui.loveyouboo.de/G4/_common/_assets/icons/dlf/gif.gif gif.gif
+	AddIcon http://ui.loveyouboo.de/G4/_common/_assets/icons/dlf/html.gif html.gif   
+	AddIcon http://ui.loveyouboo.de/G4/_common/_assets/icons/dlf/html.png html.png 
+	AddIcon http://ui.loveyouboo.de/G4/_common/_assets/icons/dlf/image-blind-clear-shim.png image-blind-clear-shim.png  
+	AddIcon http://ui.loveyouboo.de/G4/_common/_assets/icons/dlf/image-farbdenker.png image-farbdenker.png  
+	AddIcon http://ui.loveyouboo.de/G4/_common/_assets/icons/dlf/image-filter-displayVisualDisturbance.png image-filter-displayVisualDisturbance.png 
+	AddIcon http://ui.loveyouboo.de/G4/_common/_assets/icons/dlf/image-filter-scanlines.png image-filter-scanlines.png   
+	AddIcon http://ui.loveyouboo.de/G4/_common/_assets/icons/dlf/image-icn-apple-farbdenker.png image-icn-apple-farbdenker.png  
+	AddIcon http://ui.loveyouboo.de/G4/_common/_assets/icons/dlf/image-icn-farbdenker.png image-icn-farbdenker.png  
+	AddIcon http://ui.loveyouboo.de/G4/_common/_assets/icons/dlf/image-pattern-bottom.png image-pattern-bottom.png  
+	AddIcon http://ui.loveyouboo.de/G4/_common/_assets/icons/dlf/image-pattern-left.png image-pattern-left.png  
+	AddIcon http://ui.loveyouboo.de/G4/_common/_assets/icons/dlf/image-pattern-right.png image-pattern-right.png  
+	AddIcon http://ui.loveyouboo.de/G4/_common/_assets/icons/dlf/image-pattern-top.png image-pattern-top.png 
+	AddIcon http://ui.loveyouboo.de/G4/_common/_assets/icons/dlf/image-client-production-net.png image-client-production-net.png 	
+	AddIcon http://ui.loveyouboo.de/G4/_common/_assets/icons/dlf/image-client-production-print.png image-client-production-print.png 
+	AddIcon http://ui.loveyouboo.de/G4/_common/_assets/icons/dlf/info.png info.png   
+	
+	AddIcon http://ui.loveyouboo.de/G4/_common/_assets/icons/dlf/jpg.gif jpg.gif
+	AddIcon http://ui.loveyouboo.de/G4/_common/_assets/icons/dlf/jsx.png jsx.png
+	AddIcon http://ui.loveyouboo.de/G4/_common/_assets/icons/dlf/license.png license.png    
+	AddIcon http://ui.loveyouboo.de/G4/_common/_assets/icons/dlf/log.png log.png 	
+	AddIcon http://ui.loveyouboo.de/G4/_common/_assets/icons/dlf/mp3.gif mp3.gif   
+	AddIcon http://ui.loveyouboo.de/G4/_common/_assets/icons/dlf/msg-farbdenker.png msg-farbdenker.png 
+	AddIcon http://ui.loveyouboo.de/G4/_common/_assets/icons/dlf/msg-mail-farbdenker.png msg-mail-farbdenker.png  
+	AddIcon http://ui.loveyouboo.de/G4/_common/_assets/icons/dlf/msg-mail.png msg-mail.png  	
+	AddIcon http://ui.loveyouboo.de/G4/_common/_assets/icons/dlf/msg.png msg.png 
+	 
+	AddIcon http://ui.loveyouboo.de/G4/_common/_assets/icons/dlf/pdf.gif pdf.gif 
+	AddIcon http://ui.loveyouboo.de/G4/_common/_assets/icons/dlf/psd.gif psd.gif
+	AddIcon http://ui.loveyouboo.de/G4/_common/_assets/icons/dlf/psd.png psd.png 
+	AddIcon http://ui.loveyouboo.de/G4/_common/_assets/icons/dlf/psb.png psb.png 	
+	 	
+	AddIcon http://ui.loveyouboo.de/G4/_common/_assets/icons/dlf/real.gif real.gif 
+	AddIcon http://ui.loveyouboo.de/G4/_common/_assets/icons/dlf/setup.gif setup.gif   
+	AddIcon http://ui.loveyouboo.de/G4/_common/_assets/icons/dlf/sig.gif sig.gif 
+	AddIcon http://ui.loveyouboo.de/G4/_common/_assets/icons/dlf/skb.gif skb.gif   	
+	AddIcon http://ui.loveyouboo.de/G4/_common/_assets/icons/dlf/skb.png skb.png   
+	AddIcon http://ui.loveyouboo.de/G4/_common/_assets/icons/dlf/swf.gif swf.gif   
+	AddIcon http://ui.loveyouboo.de/G4/_common/_assets/icons/dlf/swf.png swf.png
+	AddIcon http://ui.loveyouboo.de/G4/_common/_assets/icons/dlf/flex-01.png flex-01.png
+	AddIcon http://ui.loveyouboo.de/G4/_common/_assets/icons/dlf/flex-02.png flex-02.png	
+	AddIcon http://ui.loveyouboo.de/G4/_common/_assets/icons/dlf/technote.png technote.png  
+	AddIcon http://ui.loveyouboo.de/G4/_common/_assets/icons/dlf/text.png text.png	
+	AddIcon http://ui.loveyouboo.de/G4/_common/_assets/icons/dlf/trans.gif trans.gif   
+	AddIcon http://ui.loveyouboo.de/G4/_common/_assets/icons/dlf/ttf-farbdenker.png ttf-farbdenker.png    
+	AddIcon http://ui.loveyouboo.de/G4/_common/_assets/icons/dlf/ttf.png ttf.png 
+	  
+	AddIcon http://ui.loveyouboo.de/G4/_common/_assets/icons/dlf/unknown.png unknown.png
+	AddIcon http://ui.loveyouboo.de/G4/_common/_assets/icons/dlf/user-profil-metadata.png user-profil-metadata.png   
+	AddIcon http://ui.loveyouboo.de/G4/_common/_assets/icons/dlf/video.gif video.gif  
+	AddIcon http://ui.loveyouboo.de/G4/_common/_assets/icons/dlf/video2.gif video2.gif
+	AddIcon http://ui.loveyouboo.de/G4/_common/_assets/icons/dlf/video-01.png video-01.png	
+	AddIcon http://ui.loveyouboo.de/G4/_common/_assets/icons/dlf/video-02.png video-02.png		
+	AddIcon http://ui.loveyouboo.de/G4/_common/_assets/icons/dlf/xls.gif xls.gif 	
+   
+
+#	.	.	.	.	.	.	.	.	.	.	.	.	.	.	.	.	.	.	.	.	.	.	.	.	.	.	.	.	.	.	.	.	.
+#
+#	DEFAULT ICON DIRECTIVE
+#	
+
+
+ 	AddIcon http://ui.loveyouboo.de/G4/_common/_assets/shim.gif .. 
+ 	AddIcon http://ui.loveyouboo.de/G4/_common/_assets/icons/dlf/back.gif ..
+	
+	AddIcon http://ui.loveyouboo.de/G4/_common/_assets/icons/dlf/folder.png ^^DIRECTORY^^
+	AddIcon http://ui.loveyouboo.de/G4/_common/_assets/shim.gif ^^BLANKICON^^
+
+	
+#	AddIcon http://ui.loveyouboo.de/G4/_common/_assets/shim.gif *.gif *.jpg *.jpeg *.png *.tif *.tiff *.bmp *.Gif *.Jpg *.Jpeg *.Png *.Tif *.Tiff *.Bmp *.GIF *.JPG *.JPEG *.PNG *.TIF *.TIFF *.BMP
+
+	AddIcon http://ui.loveyouboo.de/G4/_common/_assets/icons/dlf/image-blind-clear-shim.png blind.gif blind.png clear.gif clear.png shim.gif shim.png 
+	AddIcon http://ui.loveyouboo.de/G4/_common/_assets/icons/dlf/image-filter-scanlines.png *scanline*.png *scanline*.Png *scanline*.PNG
+	AddIcon http://ui.loveyouboo.de/G4/_common/_assets/icons/dlf/image-filter-displayVisualDisturbance.png *displayVisualDisturbance*.png *displayVisualDisturbance*.Png *displayVisualDisturbance*.PNG	
+	
+	AddIcon http://ui.loveyouboo.de/G4/_common/_assets/icons/dlf/image-pattern-left.png /shader/left.png /shader/left.Png /shader/left.PNG	
+	AddIcon http://ui.loveyouboo.de/G4/_common/_assets/icons/dlf/image-pattern-right.png /shader/right.png /shader/right.Png /shader/right.PNG			
+	AddIcon http://ui.loveyouboo.de/G4/_common/_assets/icons/dlf/image-pattern-top.png /shader/top.png /shader/top.Png /shader/top.PNG	
+	AddIcon http://ui.loveyouboo.de/G4/_common/_assets/icons/dlf/image-pattern-bottom.png /shader/bottom.png /shader/bottom.Png /shader/bottom.PNG	
+
+	AddIcon http://ui.loveyouboo.de/G4/_common/_assets/icons/dlf/image-icn-farbdenker.png *farbdenker*.ico *farbdenker*.Ico *farbdenker*.ICO *farbdenker*favicon*.ico *farbdenker*favicon*.Ico *farbdenker*favicon*.ICO *farbdenker*favicon.ico *farbdenker*favicon.Ico *farbdenker*favicon.ICO *farbdenker*favicon.png *farbdenker*favicon.Png *farbdenker*favicon.PNG
+	AddIcon http://ui.loveyouboo.de/G4/_common/_assets/icons/dlf/image-icn-apple-farbdenker.png *farbdenker*apple*.ico *farbdenker*apple*.Ico *farbdenker*apple*.ICO *farbdenker*apple*.png *farbdenker*apple*.Png *farbdenker*apple*.PNG
+#	AddIcon http://ui.loveyouboo.de/G4/_common/_assets/icons/dlf/image-farbdenker.png farbdenker*.png farbdenker*.Png farbdenker*.PNG *farbdenker*.png *farbdenker*.Png *farbdenker*.PNG *farbdenker*.gif *farbdenker*.Gif *farbdenker*.GIF *farbdenker*.jpg *farbdenker*.Jpg *farbdenker*.JPG *farbdenker*.jpeg *farbdenker*.Jpeg *farbdenker*.JPEG *farbdenker*.tif *farbdenker*.Tif *farbdenker*.TIF *farbdenker*.tiff *farbdenker*.Tiff *farbdenker*.TIFF
+#	AddIcon http://ui.loveyouboo.de/G4/_common/_assets/icons/dlf/image-farbdenker.png /farbdenker*.png /farbdenker*.Png /farbdenker*.PNG /*/*farbdenker*.png /*/*farbdenker*.Png /*/*farbdenker*.PNG /*/*farbdenker*.gif /*/*farbdenker*.Gif /*/*farbdenker*.GIF /*/*farbdenker*.jpg /*/*farbdenker*.Jpg /*/*farbdenker*.JPG /*/*farbdenker*.jpeg /*/*farbdenker*.Jpeg /*/*farbdenker*.JPEG /*/*farbdenker*.tif /*/*farbdenker*.Tif /*/*farbdenker*.TIF /*/*farbdenker*.tiff /*/*farbdenker*.Tiff /*/*farbdenker*.TIFF
+	AddIcon http://ui.loveyouboo.de/G4/_common/_assets/icons/dlf/image-farbdenker.png /_farbdenker*.png /_farbdenker*.Png /_farbdenker*.PNG /*/_farbdenker*.png /*/_farbdenker*.Png /*/_farbdenker*.PNG /farbdenker*.png /farbdenker*.Png /farbdenker*.PNG /*/farbdenker*.png /*/farbdenker*.Png /*/farbdenker*.PNG /*/farbdenker*.gif /*/farbdenker*.Gif /*/farbdenker*.GIF /*/farbdenker*.jpg /*/farbdenker*.Jpg /*/farbdenker*.JPG /*/farbdenker*.jpeg /*/farbdenker*.Jpeg /*/farbdenker*.JPEG /*/farbdenker*.tif /*/farbdenker*.Tif /*/farbdenker*.TIF /*/*farbdenker*.tiff /*/farbdenker*.Tiff /*/farbdenker*.TIFF
+	AddIcon http://ui.loveyouboo.de/G4/_common/_assets/icons/dlf/image-farbdenker.png farbdenker*logo*.png farbdenker*logo*.Png farbdenker*logo*.PNG
+	
+#	AddIcon http://ui.loveyouboo.de/G4/_common/_assets/icons/dlf/video2.gif *.wav *.mp3 *.mpg *.mpeg *.aiff *.aif *.WAV *.MP3 *.MPEG *.AIFF *.AIF
+	AddIcon http://ui.loveyouboo.de/G4/_common/_assets/icons/dlf/video-01.png *.wav *.mp3 *.mpg *.mpeg *.aiff *.aif *.WAV *.MP3 *.MPEG *.AIFF *.AIF	
+	AddIcon http://ui.loveyouboo.de/G4/_common/_assets/icons/dlf/archive.png *.cmp *.rar *.zip *.gz *.tar *.bz2 *.bz *.Z *.z *.sit *.sitx *.ace *.arj *.CMP *.RAR *.ZIP *.GZ *.TAR *.BZ2 *.BZ *.SIT *.SITX *.ACE *.ARJ
+	AddIcon http://ui.loveyouboo.de/G4/_common/_assets/icons/dlf/pdf.gif *.pdf *.Pdf *.PDF
+	AddIcon http://ui.loveyouboo.de/G4/_common/_assets/icons/dlf/psd.png *.psd*.psb *.ps *.Psd *.Psb *.Ps *.PSD *.PSB *.PS
+	AddIcon http://ui.loveyouboo.de/G4/_common/_assets/icons/dlf/real.gif *.ram *.Ram *.RAM
+#	AddIcon http://ui.loveyouboo.de/G4/_common/_assets/icons/dlf/setup.gif *.inc *.include *.js *.java *.Inc *.Include *.Js *.Java *.INC *.INCLUDE *.JS *.JAVA
+	AddIcon http://ui.loveyouboo.de/G4/_common/_assets/icons/dlf/settings.png *.inc *.include *.js *.java *.Inc *.Include *.Js *.Java *.INC *.INCLUDE *.JS *.JAVA
+	AddIcon http://ui.loveyouboo.de/G4/_common/_assets/icons/dlf/jsx.png *.jsx *.Jsx *.JSX 	
+	AddIcon http://ui.loveyouboo.de/G4/_common/_assets/icons/dlf/skb.gif *.skb *.Skb *.SKB
+	
+	AddIcon http://ui.loveyouboo.de/G4/_common/_assets/icons/dlf/flex-02.png *.flex *.Flex *.FLEX
+#	AddIcon http://ui.loveyouboo.de/G4/_common/_assets/icons/dlf/swf.gif *.swf *.Swf *.SWF
+	AddIcon http://ui.loveyouboo.de/G4/_common/_assets/icons/dlf/swf.png *.swf *.Swf *.SWF	
+#	AddIcon http://ui.loveyouboo.de/G4/_common/_assets/icons/dlf/fla.gif *.fla *.Fla *.FLA
+	AddIcon http://ui.loveyouboo.de/G4/_common/_assets/icons/dlf/fla.png *.fla *.Fla *.FLA	
+
+	AddIcon http://ui.loveyouboo.de/G4/_common/_assets/icons/dlf/image-client-production-print.png /*Produkt*high*Druckdaten.jpg /*Produkt*Druckdaten.jpg /*Produkt*CMYK.jpg /*Produkt*CMYK*.jpg /*Produkt*cmyk.jpg /*Produkt*cmyk*.jpg
+	AddIcon http://ui.loveyouboo.de/G4/_common/_assets/icons/dlf/image-client-production-net.png /*Produkt*low*Vorschau.jpg	/*Produkt*web*Vorschau.jpg		
+	
+	AddIcon http://ui.loveyouboo.de/G4/_common/_assets/icons/dlf/text.png *.php *.php3 *.php4 *.php5 *.xml *.asp *.Php *.Php3 *.Php4 *.Php5 *.Xml *.Asp *.PHP *.PHP3 *.PHP4 *.PHP5 *.XML *.ASP
+	AddIcon http://ui.loveyouboo.de/G4/_common/_assets/icons/dlf/html.png *.shtm *.htm *.shtml *.html *.SHTM *.HTM *.SHTML *.HTML
+	AddIcon http://ui.loveyouboo.de/G4/_common/_assets/icons/dlf/xls.gif *.xls *.Xlx *.XLS *.csv *.Csv *.CSV
+	AddIcon http://ui.loveyouboo.de/G4/_common/_assets/icons/dlf/doc.gif *.doc *.Doc *.DOC *.dot *.Dot *.DOT
+	AddIcon http://ui.loveyouboo.de/G4/_common/_assets/icons/dlf/eps.gif *.eps *.ai *.Eps *.Ai *.EPS *.AI
+	AddIcon http://ui.loveyouboo.de/G4/_common/_assets/icons/dlf/gif.gif *.gif *.Gif *.GIF
+	AddIcon http://ui.loveyouboo.de/G4/_common/_assets/icons/dlf/jpg.gif *.jpg *.jpeg *.png *.tif *.tiff *.bmp *.Jpg *.Jpeg *.Png *.Tif *.Tiff *.Bmp *.JPG *.JPEG *.PNG *.TIF *.TIFF *.BMP
+#	AddIcon http://ui.farbdenker.de/G4/_common/_assets/icons/dlf/fh10.gif *.fh7 *.fh8 *.fh9 *.f10 *.f11 *.f12 *.Fh7 *.Fh8 *.Fh9 *.FH7 *.FH8 *.FH9 *.F10 *.F11 *.F12
+	AddIcon http://ui.loveyouboo.de/G4/_common/_assets/icons/dlf/fh10-mx.png *.f10 *.f11 *.f12 *.Fh7 *.Fh8 *.Fh9 *.F10 *.F11 *.F12
+	AddIcon http://ui.loveyouboo.de/G4/_common/_assets/icons/dlf/fh9.png *.fh7 *.fh8 *.fh9 *.FH7 *.FH8 *.FH9
+	AddIcon http://ui.loveyouboo.de/G4/_common/_assets/icons/dlf/exe.gif *.exe *.Exe *.EXE
+
+	AddIcon http://ui.loveyouboo.de/G4/_common/_assets/icons/dlf/folder-css.png /_css /_css/_skin /_css/_skin/_bundle /_css/_theme /_css/_theme/_background /_css/_theme/_framework /_css/_theme/_framework/jQuery /_css/_theme/_framework/jQuery/1.8.15 /_css/_theme/_framework/jQuery/1.8.16 /_css/_theme/_framework/jQuery/plug-in /_css/_theme/_framework/jQuery/widget /_css/_theme/_framework/jQuery/widget/layout
+	AddIcon http://ui.loveyouboo.de/G4/_common/_assets/icons/dlf/css.png *.css *.Css *.CSS
+	
+	AddIcon http://ui.loveyouboo.de/G4/_common/_assets/icons/dlf/binary.png *.c *.h *.hqx *.conf *.C *.H *.Hqx *.Conf *.HQX *.CONF
+	AddIcon http://ui.loveyouboo.de/G4/_common/_assets/icons/dlf/binary.png *.sh *.Sh *.SH
+
+	AddIcon http://ui.loveyouboo.de/G4/_common/_assets/icons/dlf/settings-farbdenker.png *farbdenker*settings*.txt *farbdenker*settings*.Txt *farbdenker*settings*.TXT *FARBDENKER*Settings*.txt *FARBDENKER*Settings*.Txt *FARBDENKER*Settings*.TXT
+	AddIcon http://ui.loveyouboo.de/G4/_common/_assets/icons/dlf/settings.png *settings*.txt *settings*.Txt *settings*.TXT *Settings*.txt *Settings*.Txt *Settings*.TXT "INSTALLATION"
+	AddIcon http://ui.loveyouboo.de/G4/_common/_assets/icons/dlf/copyright.png "COPYRIGHT" "LEGENCY"
+	AddIcon http://ui.loveyouboo.de/G4/_common/_assets/icons/dlf/license.png "LICENSE" "GNU" "GNU-License" "GNU-LICENSE" "BSD" "BSD-License" "BSD-LICENSE" "BSD-License.txt" "BSD-LICENSE.txt" "BSD-License.Txt" "BSD-LICENSE.Txt" "BSD-License.TXT" "BSD-LICENSE.TXT"
+	AddIcon http://ui.loveyouboo.de/G4/_common/_assets/icons/dlf/license.png "LIESMICH" "liesmich" liesmich.txt liesmich.Txt liesmich.TXT LIESMICH.txt LIESMICH.Txt LIESMICH.TXT 
+	AddIcon http://ui.loveyouboo.de/G4/_common/_assets/icons/dlf/log.png "ChangeLog" "Log" "LOG" *.log *.Log *.LOG
+	AddIcon http://ui.loveyouboo.de/G4/_common/_assets/icons/dlf/info.png info.txt info.Txt info.TXT Info.txt Info.Txt Info.TXT
+
+	AddIcon http://ui.loveyouboo.de/G4/_common/_assets/icons/dlf/folder-user.png /_metadata /_metadata/IPTC "/_metadata/IPTC Core" "/_metadata/XMP ( Adobe Extensible Metadata Platform )" /_metadata/XMP /_user "/XMP*Metadata*" /_user/manuel_gotzen /_user/sebastian_wehrmann /_user/frank_altmann /_user/iwonka_kubis
+	AddIcon http://ui.loveyouboo.de/G4/_common/_assets/icons/dlf/user-profil-metadata.png _unitedHumans.txt *unitedHumans.txt *unitedHumans.Txt *unitedHumans.TXT
+	AddIcon http://ui.loveyouboo.de/G4/_common/_assets/icons/dlf/technote.png technote.txt techNote.txt TechNote.txt *technote* *TechNote*
+	AddIcon http://ui.loveyouboo.de/G4/_common/_assets/icons/dlf/sig.gif *.txt *.Txt *.TXT
+
+#	AddIcon http://ui.loveyouboo.de/G4/_common/_assets/icons/dlf/msg-farbdenker.png *farbdenker*.msg *farbdenker*.Msg *farbdenker*.MSG	
+#	AddIcon http://ui.loveyouboo.de/G4/_common/_assets/icons/dlf/msg.png *.msg *.Msg *.MSG
+
+
+	AddIcon http://ui.loveyouboo.de/G4/_common/_assets/icons/dlf/msg-mail.png *farbdenker*manuel*.msg *farbdenker*sebastian*.msg *farbdenker*frank*.msg *farbdenker*iwonka*.msg 
+	AddIcon http://ui.loveyouboo.de/G4/_common/_assets/icons/dlf/msg-mail-farbdenker.png *farbdenker*.msg *farbdenker*.Msg *farbdenker*.MSG	
+	AddIcon http://ui.loveyouboo.de/G4/_common/_assets/icons/dlf/msg-mail.png *.msg *.Msg *.MSG
+	
+	AddIcon http://ui.loveyouboo.de/G4/_common/_assets/icons/dlf/folder-image-assets.png /_issue /_image /_images /_picture /_pictures
+	AddIcon http://ui.loveyouboo.de/G4/_common/_assets/icons/dlf/folder-media.png /_media /media /_media/_video /_media/_film /_media/_issue /_media/_music /_media/_musik /_media/_audio /_media/_stream /_media/_bin /_media/_src /_media/_res /_media/_history /_media/_archiv /_media/_stock /_media/_stocks /_media/_theme /_media/_themes
+	AddIcon http://ui.loveyouboo.de/G4/_common/_assets/icons/dlf/folder-media-logo.png /_media/_logo /media/_logo /_media/logo /media/logo /_media/_stock/_logo
+	AddIcon http://ui.loveyouboo.de/G4/_common/_assets/icons/dlf/folder-download.png /_download /download /_downloads /downloads /_download/Software /_download/Software/Internet /_download/Software/Internet/Host /_download/Software/Internet/QuickJoin /_download/Software/Internet/QuickSupport /_download/Software/Internet/TeamViewer /_download/interactive /_download/interactive/game
+	AddIcon http://ui.loveyouboo.de/G4/_common/_assets/icons/dlf/folder-upload.png /_upload /upload /_uploads /uploads "/_uploads/portfolio*" "/uploads/portfolio*"		
+
+	AddIcon http://ui.loveyouboo.de/G4/_common/_assets/icons/dlf/folder-scripts.png /_scripts /_scripts /_av /_ps-scripts /_scripts/_as /_scripts/_net/_as /_scripts/_as/_handle /_scripts/_java /_scripts/_net/_java /_scripts/_net/_flex /_js /_perl /_php /_vbs /java /php /javascript /javascripts /javaScript /javaScripts /scripts /jscript /jscripts
+	AddIcon http://ui.loveyouboo.de/G4/_common/_assets/icons/dlf/folder-settings.png /_settings
+	AddIcon http://ui.loveyouboo.de/G4/_common/_assets/icons/dlf/folder-lnk.png /_lnk "/_Famous Links"
+	AddIcon http://ui.loveyouboo.de/G4/_common/_assets/icons/dlf/folder-net.png /_net
+	AddIcon http://ui.loveyouboo.de/G4/_common/_assets/icons/dlf/folder-wallpaper.png /_wallpaper		
+	AddIcon http://ui.loveyouboo.de/G4/_common/_assets/icons/dlf/folder-socialNetwork.png /_socialNetwork /_net/_socialNetwork 
+	AddIcon http://ui.loveyouboo.de/G4/_common/_assets/icons/dlf/folder-socialViewer.png /_teamViewer
+	AddIcon http://ui.loveyouboo.de/G4/_common/_assets/icons/dlf/folder-ase.png /_color-preset /_color_preset /_color /_color/_ICC "/_color/_ICC/Adobe Profiles" "/_color/_ICC/ECI ( European Color Initative )" "/_color/_ICC/ECI ( European Color Initative )/ECI_Offset_2009 ( ISO Coated v2 300% )" "/_color/_ICC/ECI ( European Color Initative )/eciRGB_v2" /_color/_PANTONE
+
+	AddIcon http://ui.loveyouboo.de/G4/_common/_assets/icons/dlf/desktop.png /_wallpaper/*farbdenker*.png /_wallpaper/*farbdenker*.Png /_wallpaper/*farbdenker*.PNG /_wallpaper/_farbdenker*.png /_wallpaper/_farbdenker*.Png /_wallpaper/_farbdenker*.PNG /_wallpaper/farbdenker*.png /_wallpaper/farbdenker*.Png /_wallpaper/farbdenker*.PNG /_wallpaper/farbdenker*.gif /_wallpaper/farbdenker*.Gif /_wallpaper/farbdenker*.GIF /_wallpaper/farbdenker*.jpg /_wallpaper/farbdenker*.Jpg /_wallpaper/farbdenker*.JPG /_wallpaper/farbdenker*.jpeg /_wallpaper/farbdenker*.Jpeg /_wallpaper/farbdenker*.JPEG /_wallpaper/farbdenker*.tif /_wallpaper/farbdenker*.Tif /_wallpaper/farbdenker*.TIF /_wallpaper/*farbdenker*.tiff /_wallpaper/farbdenker*.Tiff /_wallpaper/farbdenker*.TIFF
+	AddIcon http://ui.loveyouboo.de/G4/_common/_assets/icons/dlf/desktop.png /*farbdenker_net*.png /*farbdenker_net*.Png /*farbdenker_net*.PNG /_farbdenker*.png /_farbdenker*.Png /_farbdenker*.PNG /farbdenker*.png /farbdenker*.Png /farbdenker*.PNG /farbdenker*.gif /farbdenker*.Gif /farbdenker*.GIF /farbdenker*.jpg /farbdenker*.Jpg /farbdenker*.JPG /farbdenker*.jpeg /farbdenker*.Jpeg /farbdenker*.JPEG /farbdenker*.tif /farbdenker*.Tif /farbdenker*.TIF /*farbdenker_net*.tiff /farbdenker*.Tiff /farbdenker*.TIFF
+	AddIcon http://ui.loveyouboo.de/G4/_common/_assets/icons/dlf/folder-image-assets.png /_assets /_assets/icons /_assets/icons/dlf /_assets/icons/small /_assets/icons/theme /_assets/icons/theme/listing /_assets/objects /_assets/objects/misc /avatar
+
+	AddIcon http://ui.loveyouboo.de/G4/_common/_assets/icons/dlf/folder-patterns.png /_assets/pattern /_assets/pattern/background /_assets/pattern/background/body /_assets/pattern/background/body/theme /_assets/pattern/filter /_assets/pattern/shader /_assets/patterns /_pattern /_patterns	
+	AddIcon http://ui.loveyouboo.de/G4/_common/_assets/icons/dlf/folder-pattern.png /_assets/pattern /_assets/pattern/background /_assets/pattern/background/body /_assets/pattern/background/body/theme /_assets/pattern/filter /_assets/pattern/shader /_assets/patterns /_pattern /_patterns
+	AddIcon http://ui.loveyouboo.de/G4/_common/_assets/icons/dlf/folder-pattern-blue.png /_assets/pattern/background/body/theme/blue /_assets/pattern/background/body/theme/blau
+	AddIcon http://ui.loveyouboo.de/G4/_common/_assets/icons/dlf/folder-pattern-blueReflection.png /_assets/pattern/background/body/theme/blueReflection /_assets/pattern/background/body/theme/blauReflektion /_assets/pattern/background/body/theme/blauReflektiert
+	AddIcon http://ui.loveyouboo.de/G4/_common/_assets/icons/dlf/folder-pattern-yellow.png /_assets/pattern/background/body/theme/yellow /_assets/pattern/background/body/theme/gelb
+	AddIcon http://ui.loveyouboo.de/G4/_common/_assets/icons/dlf/folder-pattern-green.png /_assets/pattern/background/body/theme/green /_assets/pattern/background/body/theme/gruen	
+	AddIcon http://ui.loveyouboo.de/G4/_common/_assets/icons/dlf/folder-pattern-gray.png /_assets/pattern/background/body/theme/gray /_assets/pattern/background/body/theme/grey /_assets/pattern/background/body/theme/grau
+	AddIcon http://ui.loveyouboo.de/G4/_common/_assets/icons/dlf/folder-pattern-orange.png /_assets/pattern/background/body/theme/orange
+	AddIcon http://ui.loveyouboo.de/G4/_common/_assets/icons/dlf/folder-pattern-red.png /_assets/pattern/background/body/theme/red /_assets/pattern/background/body/theme/magenta /_assets/pattern/background/body/theme/mangenta /_assets/pattern/background/body/theme/rot
+
+	AddIcon http://ui.loveyouboo.de/G4/_common/_assets/icons/dlf/folder-etc.png /_etc /etc /_comp /_dump /_res /res /source /sources /_resource /_resources /_php-dev /*-dev /_dev /_develp /_development /dev /develop /development /*apps /xapps /apps /xlib /src /_src /_src/_apps /_src/_flex /_src/_flex/papervision1 /_src/_flex/papervision1/GreatWhite /_src/_flex/papervision2 /_src/_flex/papervision2/GreatWhite /_common_reference /_common_resource /_common_ressource
+	AddIcon http://ui.loveyouboo.de/G4/_common/_assets/icons/dlf/folder-external.png /_external
+	AddIcon http://ui.loveyouboo.de/G4/_common/_assets/icons/dlf/folder-implements.png /_implements	
+			
+#	AddIcon http://ui.loveyouboo.de/G4/_common/_assets/icons/dlf/ase-cs.png *.ase *.Ase *.ASE
+	AddIcon http://ui.loveyouboo.de/G4/_common/_assets/icons/dlf/ase-farbdenker.png *farbdenker*.ase *farbdenker*.Ase *farbdenker*.ASE
+	AddIcon http://ui.loveyouboo.de/G4/_common/_assets/icons/dlf/ase.png *.ase *.Ase *.ASE
+
+#	AddIcon http://ui.loveyouboo.de/G4/_common/_assets/icons/dlf/aco-cs.png *.aco *.Aco *.ACO
+	AddIcon http://ui.loveyouboo.de/G4/_common/_assets/icons/dlf/aco-farbdenker.png *farbdenker*.aco *farbdenker*.Aco *farbdenker*.ACO
+	AddIcon http://ui.loveyouboo.de/G4/_common/_assets/icons/dlf/aco.png *.aco *.Aco *.ACO
+	AddIcon http://ui.loveyouboo.de/G4/_common/_assets/icons/dlf/aco.png /xlib/rgb.txt rgb.txt RGB.txt sRGB.txt	
+	
+	AddIcon http://ui.loveyouboo.de/G4/_common/_assets/icons/dlf/folder-download-ttf.png /_download/font /_download/fonts /_download/fonts/font-sebastian
+	AddIcon http://ui.loveyouboo.de/G4/_common/_assets/icons/dlf/folder-ttf.png /_font /_fonts /font* /font /fonts* /fonts
+	AddIcon http://ui.loveyouboo.de/G4/_common/_assets/icons/dlf/ttf-farbdenker.png *farbdenker*.ttf *farbdenker*.Ttf *farbdenker*.TTF
+	AddIcon http://ui.loveyouboo.de/G4/_common/_assets/icons/dlf/ttf.png *.ttf *.Ttf *.TTF *.ps *.Ps *.PS
+
+	AddIcon http://ui.loveyouboo.de/G4/_common/_assets/icons/dlf/folder-doc.png /_doc /_docs /doc /docs /_pdf /bio /vita
+
+	AddIcon http://ui.loveyouboo.de/G4/_common/_assets/icons/dlf/folder-blog.png /_blog /blog /wp-content /_wp-content /wp /_wp /wordpress /_wordpress
+	AddIcon http://ui.farbdenker.net/G4/_common/_assets/icons/dlf/folder-openx.png /_openX /_openx /openx /openX /_openad /_openads /_openAd /_openAds /openad /openads /openAd /openAds	
+	
+	AddIcon http://ui.loveyouboo.de/G4/_common/_assets/icons/theme/listing/external_grey.png *.url *.Url *.URL *.website *.Website *.WEBSITE *.lnk *.Lnk *.LNK
+
+
+
+
+# 	PLSEK Server Settings
+	AddIcon http://ui.loveyouboo.de/G4/_common/_assets/icons/dlf/folder-settings.png /plesk-stat
+	AddIcon http://ui.loveyouboo.de/G4/_common/_assets/icons/dlf/folder-image-assets.png /picture_library
+
+		
+	DefaultIcon http://ui.loveyouboo.de/G4/_common/_assets/clear.png
+#	DefaultIcon http://ui.loveyouboo.de/G4/_common/_assets/shim.gif
+
+
+#
+# 	################################################################################################################################
+# 	################################################################################################################################
+# 	--------------------------------------------------------------------------------------------------------------------------------
+#	
+#
+
+
+#	.	.	.	.	.	.	.	.	.	.	.	.	.	.	.	.	.	.	.	.	.	.	.	.	.	.	.	.	.	.	.	.	.
+#
+#	ADD DESCRIPTION DIRECTIVE
+#	
+#	Example:
+#	AddDescription "The planet Mars" /web/pics/mars.gif 
+#
+#	Documents:
+#	http://httpd.apache.org/docs/2.0/mod/mod_autoindex.html#adddescription
+#
+
+
+
+
+
+
+# 	here's a cool trick!
+# 	won't work unless you cover every type you intend to serve
+# 	sort of a catch-all..
+
+
+#	Server Spezifikationen
+
+	AddDescription "Sitemap Protocol" sitemap.xml Sitemap.xml sitemap.Xml sitemap.XML Sitemap.Xml Sitemap.XML 
+	AddDescription "Robots Exclusion Protocol" robots.txt Robots.txt 
+	AddDescription "Vocabulary Description Language 1.0: RDF Schema" labels.rdf *.rdf *.Rdf *.RDF
+
+
+
+#	Bekannte Frameworks
+
+	AddDescription "G4UI JavaScript Framework oder Komponente" *gquery*.js *gQuery*.js 
+
+	AddDescription "JQuery / Optionale Erweiterung ( Dimensions )" jquery*dimension*.js *jQuery*dimension*.js jquery*dimension.js *jQuery*dimension.js
+	AddDescription "JQuery / Optionale Erweiterung ( Maximale Zeilenhoehe )" jquery*max*height*.js *jQuery*max*height*.js jquery*max*height.js *jQuery*max*height.js	
+	
+	AddDescription "JQuery / Touch Handheld Platform ( iPhone ) Plug-In / Erweiterung" jqtouch*.js jQTouch*.js jqtouch.js jQTouch.js jquery*jqtouch*.js *jQuery*jQTouch*.js jquery*jqtouch.js *jQuery*jQTouch.js *jqtouch *jQTouch
+	AddDescription "JQuery / Render JavaScript Plug-In / Erweiterung" jquery*render*.js *jQuery*render*.js jquery*render.js *jQuery*render.js
+	AddDescription "JQuery / Social Network JavaScript Plug-In / Erweiterung" *socialbutton*.js *socialbutton.js
+	
+	AddDescription "JQuery JavaScript Framework oder Komponente ( Kompakt )" *jquery*min*.js *jQuery*min*.js
+	AddDescription "JQuery JavaScript Framework oder Komponente" *jquery*.js *jQuery*.js jQuery JQuery	
+	AddDescription "JQuery / sizzle JavaScript Framework oder Komponente ( Kompakt )" *sizzle*min*.js
+	AddDescription "JQuery / sizzle JavaScript Framework oder Komponente" *sizzle*.js sizzle
+
+	AddDescription "Prototype JavaScript Framework Erweiterung" *prototype*.js
+	AddDescription "Dojo Foundation JavaScript Framework Erweiterung" *dojo*.js		
+	AddDescription "Dokument Objekt Model Assistent JavaScript Framework Erweiterung" *domass*.js	
+	AddDescription "Conditional CSS Framework oder Komponente" conditional-css Conditional-CSS
+	AddDescription "Less JavaScript Framework oder Komponente" *Lessframework*.js *LessFramework*.js *lessframework*.js *lessFramework*.js LessFramework lessframework
+	AddDescription "Modernizer JavaScript Framework oder Komponente" *Moderniz*.js *moderniz*.js Moderniz moderinz
+	AddDescription "MooTools JavaScript Framework oder Komponente" *mooTools*.js *mootools*.js MooTools mooTools mootools
+	AddDescription "msysGit Framework oder Komponente" msysgit msysGit	
+
+	AddDescription "(Sonstige) JavaScript Framework Hilfs-Erweiterung(en)" *helper*.js *helper.js *help*.js *help.js *Helper*.js *Helper.js *Help*.js *Help.js
+	AddDescription "Tracking JavaScript Framework Erweiterung" *tracking*.js *tracking.js
+	AddDescription "Utilities ( Werkzeuge ) JavaScript Framework Erweiterung" *util*.js	
+	AddDescription "Video JavaScript Framework Erweiterung" *video*.js *video.js
+	AddDescription "Site Catalyst JavaScript Framework Erweiterung" *slideshow*.js *slideshow.js *slideShow*.js *slideShow.js
+	AddDescription "NON-HTML Bilder Slideshow JavaScript Framework Erweiterung" *s_code*.js *s_code.js
+
+#	AddDescription "Arbeitsumgebung Framework Erweiterung" *workspace*.js
+
+
+
+
+#	Spezielle Kaskadierende Stylecheet Sammlungen
+
+	AddDescription "CSS Sammlung: Basic Skin Bundle" .skin/.bundle/*basic.css /*skin/*bundle/*basic.css _skin/_bundle/*basic.css _skin/_bundle/_basic.css .Skin/.Bundle/*basic.css /*Skin/*Bundle/*basic.css /*Skin/*Bundle/_basic.css
+	AddDescription "CSS Sammlung: Gemeinsam erweiterte Kompatiblitaets Klassen ( IE )" _css/_common/_advanced/_compatiblity.css /*css/*common/*advanced/*compatiblity.css _css/_common/_advanced/*compatiblity.css	
+	AddDescription "CSS Sammlung: Gemeinsam erweiterte Filter" _css/_common/_advanced/_filter.css /*css/*common/*advanced/*filter.css _css/_common/_advanced/*filter.css	
+	AddDescription "CSS Sammlung: Gemeinsam erweiterte Hyphen / Dashes" _css/_common/_advanced/_hyphen.css /*css/*common/*advanced/*hyphen.css _css/_common/_advanced/*hyphen.css		
+	AddDescription "CSS Sammlung: Gemeinsam erweiterte Punktuation" _css/_common/_advanced/_punctuation.css /*css/*common/*advanced/*punctuation.css _css/_common/_advanced/*punctuation.css		
+	AddDescription "CSS Sammlung: Skin Sheets ( Bundles )" _css/_skin /*css/*skin _css/_skin _css/_skins /*css/*skins _css/_skins
+
+	AddDescription "CSS Sammlung: Gemeinsam erweitertes Sheet" _css/_common/_advanced/_advanced.css /*css/*common/*advanced/*advanced.css _css/_common/_advanced/*advanced.css
+	AddDescription "CSS Sammlung: Gemeinsame Erweiterte Sheets" _css/_common/_advanced /*css/*common/*advanced _css/_common/_advanced
+
+	AddDescription "CSS Sammlung: Gemeinsames Basis Sheet fuer Seitenausgabe" _css/_common/_basic/_page.css /*css/*common/*basic/*page.css _css/_common/_basic/*page.css
+	AddDescription "CSS Sammlung: Gemeinsames Basis Sheet fuer Sprachausgabe" _css/_common/_basic/_aural.css /*css/*common/*basic/*aural.css _css/_common/_basic/*aural.css
+	AddDescription "CSS Sammlung: Gemeinsames Basis Sheet fuer Druckausgabe" _css/_common/_basic/_print.css /*css/*common/*basic/*print.css _css/_common/_basic/*print.css
+	AddDescription "CSS Sammlung: Gemeinsames Basis Sheet fuer iPhone" _css/_common/_basic/_iphone.css /*css/*common/*basic/*iphone.css _css/_common/_basic/*iphone.css _css/_common/_basic/_iPhone.css /*css/*common/*basic/*iPhone.css _css/_common/_basic/*iPhone.css	
+	AddDescription "CSS Sammlung: Gemeinsames Basis Sheet ( Scroll Klassen )" _css/_common/_basic/_scroll.css /*css/*common/*basic/*scroll.css _css/_common/_basic/*scroll.css
+	AddDescription "CSS Sammlung: Gemeinsames Basis Sheet ( Abgekuerzte Klassen )" _css/_common/_basic/_short.css /*css/*common/*basic/*short.css _css/_common/_basic/*short.css
+	AddDescription "CSS Sammlung: Gemeinsames Grund bzw. Basis Sheet ( Monitorausgabe )" _css/_common/_basic/_basic.css /*css/*common/*basic/*basic.css _css/_common/_basic/*basic.css
+	AddDescription "CSS Sammlung: Gemeinsame Grund bzw. Basis Sheets" _css/_common/_basic /*css/*common/*basic _css/_common/_basic
+
+	AddDescription "CSS Sammlung: Gemeinsames Farb Sheet" _css/_common/_color/_color.css /*css/*common/*color/*color.css _css/_common/_color/*color.css
+	AddDescription "CSS Sammlung: Gemeinsame Farb Sheets" _css/_common/_color /*css/*common/*color _css/_common/_color
+
+#	AddDescription "CSS Sammlung: Gemeinsam eingebundenes Farb Sheet" _css/_common/_implements/_color.css /*css/*common/*implements/*color.css _css/_common/_implements/*color.css
+#	AddDescription "CSS Sammlung: Gemeinsam eingebundenes Filter Sheet " _css/_common/_implements/_filter /*css/*common/*implements/*filter _css/_common/_implements/_filter
+#	AddDescription "CSS Sammlung: Gemeinsam eingebundenes Effekt Sheet" _css/_common/_implements/_filter /*css/*common/*implements/*filter _css/_common/_implements/_filter	
+
+	AddDescription "CSS Sammlung: Gemeinsam eingebundener Debug Sheet" _css/_common/_implements/_debug/*debug*.css /*css/*common/*implements/*debug/*debug*.css _css/_common/_implements/_debug/*debug*.css
+	AddDescription "CSS Sammlung: Gemeinsam eingebundener Debug Sheet ( Arbeitsumgebung )" _css/_common/_implements/_debug/*workspace*.css /*css/*common/*implements/*debug/*workspace*.css _css/_common/_implements/_debug/*workspace*.css
+	AddDescription "CSS Sammlung: Gemeinsam eingebundene Debug Sheets" _css/_common/_implements/_debug /*css/*common/*implements/*debug _css/_common/_implements/_debug	
+	
+	AddDescription "CSS Sammlung: Gemeinsam eingebundene Effekt Sheets" _css/_common/_implements/_effects /*css/*common/*implements/*effects _css/_common/_implements/_effects
+	AddDescription "CSS Sammlung: Gemeinsam eingebundene Filter Sheets" _css/_common/_implements/_filter /*css/*common/*implements/*filter _css/_common/_implements/_filter
+	AddDescription "CSS Sammlung: Gemeinsam eingebundene Logo Sheets" _css/_common/_implements/_logo /*css/*common/*implements/*logo _css/_common/_implements/_logo
+	
+	AddDescription "CSS Sammlung: Gemeinsam eingebundener Sheet von Schriftarten" _css/_common/_implements/_fonts/_fonts.css /*css/*common/*implements/*fonts/*fonts.css _css/_common/_implements/_fonts/*fonts.css _css/_common/_implements/_font/*fonts.css /*css/*common/*implements/*font/*fonts.css _css/_common/_implements/_font/*fonts.css	
+	AddDescription "CSS Sammlung: Gemeinsam eingebundener Sheet einer Schriftart" _css/_common/_implements/_fonts/_font.css /*css/*common/*implements/*fonts/*font.css _css/_common/_implements/_fonts/*font.css _css/_common/_implements/_font/*font.css /*css/*common/*implements/*font/*font.css _css/_common/_implements/_font/*font.css		
+	AddDescription "CSS Sammlung: Gemeinsam eingebundene Sheets fuer Schriftarten" _css/_common/_implements/_fonts /*css/*common/*implements/*fonts _css/_common/_implements/_fonts _css/_common/_implements/_font /*css/*common/*implements/*font _css/_common/_implements/_font		
+	
+	AddDescription "CSS Sammlung: Gemeinsam eingebundene Sheets" _css/_common/_implements /*css/*common/*implements _css/_common/_implements
+
+	AddDescription "CSS Sammlung: Gemeinsam vererbte erweiterte Sheets" _css/_common/_inherit/_advanced /*css/*common/*inherit/*advanced _css/_common/_inherits/_advanced /*css/*common/*inherits/*advanced _css/_common/_inherits/_advanced
+	AddDescription "CSS Sammlung: Gemeinsam vererbte Sheets" _css/_common/_inherit /*css/*common/*inherit _css/_common/_inherits /*css/*common/*inherits _css/_common/_inherits
+
+	AddDescription "CSS Sammlung: Gemeinsame Sheets" _css/_common /*css/*common _css/_common
+
+	AddDescription "CSS Sammlung: Quell- und Resourcen Sheets" _css/_res /*css/*res _css/_res
+
+	AddDescription "CSS Sammlung: Theme Hintergrund Sheet" _css/_theme/_background/_theme_background.css /*css/*theme/*background/*theme*background.css _css/_theme/_backgrounds/_theme_background.css /*css/*theme/*backgrounds/*theme*background.css _css/_theme/_backgrounds/_theme_backgrounds.css /*css/*theme/*backgrounds/*theme*backgrounds.css
+	AddDescription "CSS Sammlung: Themen Hintergrund Sheets" _css/_theme/_background /*css/*theme/*background _css/_theme/_backgrounds /*css/*theme/*backgrounds
+	AddDescription "CSS Sammlung: Themen Sheets" _css/_theme /*css/*theme
+
+
+
+
+#	G4UI Profile Presets 
+
+	AddDescription "Downloads" _download
+
+
+
+	AddDescription "Benutzerprofil" _user/*
+	AddDescription "Benutzerprofile" _user 
+
+
+
+	AddDescription "Benutzerprofil: Avatar ( Aufloesung: Hoch )" _user/*/_avatar/*high.png _user/*/avatar/*high.png _user/*/*avatar/*high.png _user/*/_avatar/*high.Png _user/*/avatar/*high.Png _user/*/*avatar/*high.Png _user/*/_avatar/*high.PNG _user/*/avatar/*high.PNG _user/*/*avatar/*high.PNG _user/*/_avatar/*high.jpg _user/*/avatar/*high.jpg _user/*/*avatar/*high.jpg _user/*/_avatar/*high.Jpg _user/*/avatar/*high.Jpg _user/*/*avatar/*high.Jpg _user/*/_avatar/*high.JPG _user/*/avatar/*high.JPG _user/*/*avatar/*high.JPG _user/*/_avatar/*high.jpeg _user/*/avatar/*high.jpeg _user/*/*avatar/*high.jpeg _user/*/_avatar/*high.Jpeg _user/*/avatar/*high.Jpeg _user/*/*avatar/*high.Jpeg _user/*/_avatar/*high.JPEG _user/*/avatar/*high.JPEG _user/*/*avatar/*high.JPEG
+	AddDescription "Benutzerprofil: Avatar ( Aufloesung: Niedrig )" _user/*/_avatar/*low.png _user/*/avatar/*low.png _user/*/*avatar/*low.png _user/*/_avatar/*low.Png _user/*/avatar/*low.Png _user/*/*avatar/*low.Png _user/*/_avatar/*low.PNG _user/*/avatar/*low.PNG _user/*/*avatar/*low.PNG _user/*/_avatar/*low.jpg _user/*/avatar/*low.jpg _user/*/*avatar/*low.jpg _user/*/_avatar/*low.Jpg _user/*/avatar/*low.Jpg _user/*/*avatar/*low.Jpg _user/*/_avatar/*low.JPG _user/*/avatar/*low.JPG _user/*/*avatar/*low.JPG _user/*/_avatar/*low.jpeg _user/*/avatar/*low.jpeg _user/*/*avatar/*low.jpeg _user/*/_avatar/*low.Jpeg _user/*/avatar/*low.Jpeg _user/*/*avatar/*low.Jpeg _user/*/_avatar/*low.JPEG _user/*/avatar/*low.JPEG _user/*/*avatar/*low.JPEG
+	AddDescription "Benutzerprofil: Avatar" _user/*/_avatar _user/*/avatar _user/*/*avatar
+
+	AddDescription "Benutzerprofil: Bio(grafie): Lebenslauf ( Adobe PDF Dokument )" _user/*/_bio/*lebenslauf*.pdf _user/*/bio/*lebenslauf*.pdf _user/*/*bio/*lebenslauf*.pdf _user/*/_biografie/*lebenslauf*.pdf _user/*/biografie/*lebenslauf*.pdf _user/*/*biografie/*lebenslauf*.pdf _user/*/_biographie/*lebenslauf*.pdf _user/*/biographie/*lebenslauf*.pdf _user/*/*biographie/*lebenslauf*.pdf _user/*/_bio/*bio*.pdf _user/*/bio/*bio*.pdf _user/*/*bio/*bio*.pdf _user/*/_biografie/*bio*.pdf _user/*/biografie/*bio*.pdf _user/*/*biografie/*bio*.pdf _user/*/_biographie/*bio*.pdf _user/*/biographie/*bio*.pdf _user/*/*biographie/*bio*.pdf
+	AddDescription "Benutzerprofil: Bio(grafie): Vita ( Adobe PDF Dokument )" _user/*/_bio/*vita*.pdf _user/*/bio/*vita*.pdf _user/*/*bio/*vita*.pdf _user/*/_biografie/*vita*.pdf _user/*/biografie/*vita*.pdf _user/*/*biografie/*vita*.pdf _user/*/_biographie/*vita*.pdf _user/*/biographie/*vita*.pdf _user/*/*biographie/*vita*.pdf 
+	AddDescription "Benutzerprofil: Bio(grafie)" _user/*/_bio _user/*/bio _user/*/*bio _user/*/_biografie _user/*/biografie _user/*/*biografie _user/*/_biographie _user/*/biographie _user/*/*biographie
+
+	AddDescription "Benutzerprofil: Disco(grafie): Disco(grafie) ( Adobe PDF Dokument )" _user/*/_disco/*disco*.pdf _user/*/disco/*disco*.pdf _user/*/*disco/*disco*.pdf
+	AddDescription "Benutzerprofil: Disco(grafie)" _user/*/_disco _user/*/disco _user/*/*disco
+
+	AddDescription "Benutzerprofil: Vita: Vita ( Adobe PDF Dokument )" _user/*/_vita/*vita*.pdf _user/*/vita/*vita*.pdf _user/*/*vita/*vita*.pdf
+	AddDescription "Benutzerprofil: Vita" _user/*/_vita _user/*/vita _user/*/*vita
+
+	AddDescription "Framework" _UI
+	AddDescription "Core / Kern Prozesse" _core .core /*core _Core .Core Core /*Core _kern .kern /*Kern _Kern .Kern /*Kern
+
+	AddDescription "Entwicklungsumgebung" _develop develop.develop /*develop 
+	AddDescription "Arbeitsumgebung" _debug* .debug* debug /*debug* 
+	AddDescription "Arbeitsumgebung: Aptana Studio" _workspace*/_aptana /*workspace*/*aptana _workbench*/_aptana /*workbench*/*aptana
+	AddDescription "Arbeitsumgebung: Eclipse" _workspace*/_eclipse /*workspace*/*eclipse _workbench*/_eclipse /*workbench*/*eclipse
+	AddDescription "Arbeitsumgebung" _workspace* .workspace* /*workspace* _workbench* .workbench* /*workbench* 
+
+	AddDescription "META Bibliothek" _metadata* .metadata* metadata /*metadata* 		
+
+
+
+	AddDescription "G4UI JavaScript Bibliothek / Komponenten: Optionale Erweiterungen" _advanced_lib*.js
+	AddDescription "Bibliothek / Komponenten" _lib* .lib* /*lib* 
+
+	AddDescription "Ablage" _dump .dump /*dump /*ablage /*desktop /*schreibtisch /*Ablage /*Desktop /*Schreibtisch
+
+	AddDescription "Externer Link / Verweis zur G4UI Framework Bibliothek" *_lnk*url*external*G4UI*framework*lib*.lnk *_lnk*url*external*G4UI*framework*lib*.url *_lnk*url*external*G4UI*framework*lib*.URL *url*external*G4UI*framework*lib*.lnk *url*external*G4UI*framework*lib*.url *url*external*G4UI*framework*lib*.URL *lnk*external*G4UI*framework*lib*.lnk *lnk*external*G4UI*framework*lib*.url *lnk*external*G4UI*framework*lib*.URL
+
+
+
+	AddDescription "Externer Link / Verweis zum FTP Framework Verzeichniss" *_lnk*ftp*external*framework*.lnk *_lnk*ftp*external*framework*.url *_lnk*ftp*external*framework*.URL
+	AddDescription "Externer Link / Verweis zum FTP Client" *_lnk*ftp*external*.lnk *_lnk*ftp*external*.url *_lnk*ftp*external*.URL
+
+	AddDescription "Analyse" _analytic* .analytic* /*analytic _Analytic* .Analytic* /*Analytic
+	AddDescription "Vergleich" _vergleich* .vergleich* *vergleich*. /*vergleich _Vergleich* .Vergleich* *Vergleich*. /*Vergleich
+
+	AddDescription "Lesezeichen" _bookmark* .bookmark* /*bookmark /*bookmarks _lesezeichen* .lesezeichen* *lesezeichen* .*lesezeichen* /*lesezeichen _Lesezeichen* .Lesezeichen* *Lesezeichen* .*Lesezeichen* /*Lesezeichen 
+	AddDescription "Batch Werkzeug fuer einen eigenen FTP Client" _ftp* .ftp* /*ftp _FTP* .FTP* /*FTP
+	AddDescription "Batch Werkzeug zum umbenennen" _rename* .rename* /*rename 
+
+	AddDescription "Desktop Hintergrundbilder" _wallpaper .wallpaper /*wallpaper _Wallpaper .Wallpaper /*Wallpaper
+	AddDescription "Weiterfuehrende persoenliche Angaben, Links sowie Verweise" _personality .personality /*personality
+
+
+
+	AddDescription "Direkte Mail Nachricht schicken" *_lnk*G4UI*.msg *_lnk*G4UI*.MSG *@*.msg *@*.MSG *@*.msg *@*.MSG *mail*.msg *mail*.MSG *Mail*.msg *Mail*.MSG *sendMail*.msg *sendMail*.MSG
+
+
+
+	AddDescription "Link / Verweis auf Adobe (Vor-)einstellungen: Aktionen" ?*Adobe?*preset?*/?*action?*.lnk ?*Adobe?*preset?*/?*action?*.Lnk ?*Adobe?*preset?*/?*action?*.LNK ?*Adobe?*preset?*/?*action?*.url ?*Adobe?*preset?*/?*action?*.Url ?*Adobe?*preset?*/?*action?*.URL ?*preset?*psd?*action?*.lnk ?*preset?*psd?*action?*.url ?*preset?*psd?*action?*.Lnk ?*preset?*psd?*action?*.Url ?*preset?*psd?*action?*.LNK ?*preset?*psd?*action?*.URL
+	AddDescription "Link / Verweis auf Adobe (Vor-)einstellungen: Pinsel ( Brushes )" ?*Adobe?*preset?*/?*brush?*.lnk ?*Adobe?*preset?*/?*brush?*.Lnk ?*Adobe?*preset?*/?*brush?*.LNK ?*Adobe?*preset?*/?*brush?*.url ?*Adobe?*preset?*/?*brush?*.Url ?*Adobe?*preset?*/?*brush?*.URL ?*preset?*psd?*brush?*.lnk ?*preset?*psd?*brush?*.url ?*preset?*psd?*brush?*.Lnk ?*preset?*psd?*brush?*.Url ?*preset?*psd?*brush?*.LNK ?*preset?*psd?*brush?*.URL
+	AddDescription "Link / Verweis auf Adobe (Vor-)einstellungen: Farbpalette ( Color Swatches )" ?*Adobe?*preset?*/?*color?watch?*.lnk ?*Adobe?*preset?*/?*color?watch?*.Lnk ?*Adobe?*preset?*/?*color?watch?*.LNK ?*Adobe?*preset?*/?*color?watch?*.url ?*Adobe?*preset?*/?*color?watch?*.Url ?*Adobe?*preset?*/?*color?watch?*.URL ?*preset?*psd?*color?watch?*.lnk ?*preset?*psd?*color?watch?*.url ?*preset?*psd?*color?watch?*.Lnk ?*preset?*psd?*color?watch?*.Url ?*preset?*psd?*color?watch?*.LNK ?*preset?*psd?*color?watch?*.URL
+	AddDescription "Link / Verweis auf Adobe (Vor-)einstellungen: Kurven ( Curves )" ?*Adobe?*preset?*/?*curve?*.lnk ?*Adobe?*preset?*/?*curve?*.Lnk ?*Adobe?*preset?*/?*curve?*.LNK ?*Adobe?*preset?*/?*curve?*.url ?*Adobe?*preset?*/?*curve?*.Url ?*Adobe?*preset?*/?*curve?*.URL ?*preset?*psd?*curve?*.lnk ?*preset?*psd?*curve?*.url ?*preset?*psd?*curve?*.Lnk ?*preset?*psd?*curve?*.Url ?*preset?*psd?*curve?*.LNK ?*preset?*psd?*curve?*.URL
+	AddDescription "Link / Verweis auf Adobe (Vor-)einstellungen: Muster ( Patterns )" ?*Adobe?*preset?*/?*pattern?*.lnk ?*Adobe?*preset?*/?*pattern?*.Lnk ?*Adobe?*preset?*/?*pattern?*.LNK ?*Adobe?*preset?*/?*pattern?*.url ?*Adobe?*preset?*/?*pattern?*.Url ?*Adobe?*preset?*/?*pattern?*.URL ?*preset?*psd?*pattern?*.lnk ?*preset?*psd?*pattern?*.lnk ?*preset?*psd?*pattern?*.url ?*preset?*psd?*pattern?*.Lnk ?*preset?*psd?*pattern?*.Url ?*preset?*psd?*pattern?*.LNK ?*preset?*psd?*pattern?*.URL
+	AddDescription "Link / Verweis auf Adobe (Vor-)einstellungen: Skripe ( Scripts )" ?*Adobe?*preset?*/?*script?*.lnk ?*Adobe?*preset?*/?*script?*.Lnk ?*Adobe?*preset?*/?*script?*.LNK ?*Adobe?*preset?*/?*script?*.url ?*Adobe?*preset?*/?*script?*.Url ?*Adobe?*preset?*/?*script?*.URL ?*preset?*psd?*script?*.lnk ?*preset?*psd?*script?*.url ?*preset?*psd?*script?*.Lnk ?*preset?*psd?*script?*.Url ?*preset?*psd?*script?*.LNK ?*preset?*psd?*script?*.URL
+	AddDescription "Link / Verweis auf Adobe (Vor-)einstellungen: Stile ( Styles )" ?*Adobe?*preset?*/?*style?*.lnk ?*Adobe?*preset?*/?*style?*.Lnk ?*Adobe?*preset?*/?*style?*.LNK ?*Adobe?*preset?*/?*style?*.url ?*Adobe?*preset?*/?*style?*.Url ?*Adobe?*preset?*/?*style?*.URL ?*preset?*psd?*style?*.lnk ?*preset?*psd?*style?*.url ?*preset?*psd?*style?*.Lnk ?*preset?*psd?*style?*.Url ?*preset?*psd?*style?*.LNK ?*preset?*psd?*style?*.URL
+	AddDescription "Link / Verweis auf Adobe (Vor-)einstellungen: Werkzeuge ( Tools )" ?*Adobe?*preset?*/?*tool?*.lnk ?*Adobe?*preset?*/?*tool?*.Lnk ?*Adobe?*preset?*/?*tool?*.LNK ?*Adobe?*preset?*/?*tool?*.url ?*Adobe?*preset?*/?*tool?*.Url ?*Adobe?*preset?*/?*tool?*.URL ?*preset?*psd?*tool?*.lnk ?*preset?*psd?*tool?*.url ?*preset?*psd?*tool?*.Lnk ?*preset?*psd?*tool?*.Url ?*preset?*psd?*tool?*.LNK ?*preset?*psd?*tool?*.URL
+
+	AddDescription "Link / Verweis auf Adobe (Vor-)einstellungen: Konturen ( Contours )" ?*Adobe?*preset?*/?*contour?*.lnk ?*Adobe?*preset?*/?*contour?*.Lnk ?*Adobe?*preset?*/?*contour?*.LNK ?*Adobe?*preset?*/?*contour?*.url ?*Adobe?*preset?*/?*contour?*.Url ?*Adobe?*preset?*/?*contour?*.URL ?*preset?*psd?*contour?*.lnk ?*preset?*psd?*contour?*.url ?*preset?*psd?*contour?*.Lnk ?*preset?*psd?*contour?*.Url ?*preset?*psd?*contour?*.LNK ?*preset?*psd?*contour?*.URL
+	AddDescription "Link / Verweis auf Adobe (Vor-)einstellungen: Verlaeufe ( Gradients )" ?*Adobe?*preset?*/?*gradient?*.lnk ?*Adobe?*preset?*/?*gradient?*.Lnk ?*Adobe?*preset?*/?*gradient?*.LNK ?*Adobe?*preset?*/?*gradient?*.url ?*Adobe?*preset?*/?*gradient?*.Url ?*Adobe?*preset?*/?*gradient?*.URL ?*preset?*psd?*gradient?*.lnk ?*preset?*psd?*gradient?*.url ?*preset?*psd?*gradient?*.Lnk ?*preset?*psd?*gradient?*.Url ?*preset?*psd?*gradient?*.LNK ?*preset?*psd?*gradient?*.URL
+	AddDescription "Link / Verweis auf Adobe (Vor-)einstellungen: Formen ( Forms )" ?*Adobe?*preset?*/?*form?*.lnk ?*Adobe?*preset?*/?*form?*.Lnk ?*Adobe?*preset?*/?*form?*.LNK ?*Adobe?*preset?*/?*form?*.url ?*Adobe?*preset?*/?*form?*.Url ?*Adobe?*preset?*/?*form?*.URL ?*preset?*psd?*form?*.lnk ?*preset?*psd?*form?*.url ?*preset?*psd?*form?*.Lnk ?*preset?*psd?*form?*.Url ?*preset?*psd?*form?*.LNK ?*preset?*psd?*form?*.URL
+	AddDescription "Link / Verweis auf Adobe (Vor-)einstellungen: forme ( Symbols )" ?*Adobe?*preset?*/?*symbol?*.lnk ?*Adobe?*preset?*/?*symbol?*.Lnk ?*Adobe?*preset?*/?*symbol?*.LNK ?*Adobe?*preset?*/?*symbol?*.url ?*Adobe?*preset?*/?*symbol?*.Url ?*Adobe?*preset?*/?*symbol?*.URL ?*preset?*psd?*symbol?*.lnk ?*preset?*psd?*symbol?*.url ?*preset?*psd?*symbol?*.Lnk ?*preset?*psd?*symbol?*.Url ?*preset?*psd?*symbol?*.LNK ?*preset?*psd?*symbol?*.URL
+			
+
+
+
+	AddDescription "Link / Verweis auf Adobe (Vor-)einstellungen" ?*Adobe?*preset?*/*.lnk ?*Adobe?*preset?*/*.Lnk ?*Adobe?*preset?*/*.LNK ?*Adobe?*preset?*/*.url ?*Adobe?*preset?*/*.Url ?*Adobe?*preset?*/*.URL
+
+	AddDescription "Link / Verweis bzgl. einer G4UI Framework Komponente" *G4UI*.lnk *G4UI*.url *G4UI*.URL
+	AddDescription "Link / Verweis zur lokale G4UI Framework Bibliothek" *_lnk*G4UI*.lnk *_lnk*G4UI*.url *_lnk*G4UI*.URL
+	AddDescription "Link / Verweis zum eigenen Schreibtsisch" *_press*Desktop*.lnk *_press*Desktop*.url *_press*Desktop*.URL
+	
+	AddDescription "Link / Verweis zum Batchscript zum eignen FTP Client" *_lnk*ftp*.lnk *_ftp*.lnk *_lnk*ftp*.url *_ftp*.url *_lnk*ftp*.URL *_ftp*.URL
+	AddDescription "Link / Verweis zum Batchscript zum umbennen" *_lnk*rename*.lnk *_rename*.lnk *_lnk*rename*.url *_rename*.URL *_lnk*rename*.URL *_rename*.URL
+
+	AddDescription "Link / Verweis Benutzer Profilseite im sozialen Netzwerk" *author*profil*sozial*.url *author*profil*social*.url *author*profil*sozial*.URL *author*profil*social*.URL
+	AddDescription "Link / Verweis Benutzer definierter Einstellungen" *user*.lnk *profil*.lnk *setting*.lnk *preset*.lnk *user*.url *profil*.url *setting*.url *preset*.url *user*.URL *profil*.URL *setting*.URL *preset*.URL
+
+	AddDescription "Externer Link / Verweis" *_lnk*url*external*.lnk *_lnk*url*external*.url *_lnk*url*external*.URL *url*external*.lnk *url*external*.url *url*external*.URL *lnk*external*.lnk *lnk*external*.url *lnk*external*.URL
+
+	AddDescription "Gemeinsame Komponenten" _common .common /*common _share* .share* /*share*
+
+
+
+
+	AddDescription "Druckdaten ( Schreibtsisch )" *_press *_druckdaten *_Druckdaten
+	
+	AddDescription "Druckansicht ( Vorschau )" *_vorschau *_preview *_Vorschau *_Preview
+	AddDescription "Druckdaten ( Endformat )" *print *press *Print *Press
+
+	AddDescription "Aktionen" _action* .action /*action _Action .Action /*Action _aktion* .aktion /*aktion _Aktion .Aktion /*Aktion 
+	AddDescription "Java(script) Sammlung / Bibliothek / Komponenten" _java _script .script /*java /*script _Java _Script .Script /*Script /*Java
+
+	AddDescription "Batch Bibliothek / Komponenten / Stapelverarbeitung" _batch .batch /*batch
+
+	AddDescription "Link / Verweis" _url .url _URL .URL 	
+	AddDescription "Link / Verweis ( Windows )" .website .Website .WEBSITE 
+	AddDescription "Link / Verweis" _lnk .lnk _LNK .LNK 
+
+
+
+
+#	Besondere Dokumente
+
+	AddDescription "META Profil: IPTC" _metadaten/IPTC /_metadaten/IPTC _meta*/IPTC /_meta*/IPTC _meta*/Iptc /_meta*/Iptc _meta*/iptc /_meta*/iptc
+	AddDescription "META Profil: Adobe XMP" _metadaten/XMP /_metadaten/XMP _meta*/XMP /_meta*/XMP _meta*/Xmp /_meta*/Xmp _meta*/xmp /_meta*/xmp
+	AddDescription "META Profil: Autoren und Teamdaten" unitedhumans.txt unitedhumans.Txt unitedhumans.TXT unitedHumans.txt unitedHumans.Txt unitedHumans.TXT
+
+
+
+	AddDescription "Einstellung ( Text Dokument )" config.txt config.Txt config.TXT Config.txt Config.Txt Config.TXT
+
+
+
+	AddDescription "Copyright" licence.txt copyright.Txt copyright.TXT copyright.rtf copyright.Rtf copyright.RTF Copyright.txt Copyright.Txt Copyright.TXT Copyright.rtf Copyright.Rtf Copyright.RTF copyright*.Txt copyright*.TXT copyright*.rtf copyright*.Rtf copyright*.RTF Copyright*.txt Copyright*.Txt Copyright*.TXT Copyright*.rtf Copyright*.Rtf Copyright*.RTF
+	AddDescription "Lizenzen" licence.txt licence.Txt licence.TXT licence.rtf licence.Rtf licence.RTF lizenz.txt lizenz.Txt lizenz.TXT lizenz.rtf lizenz.Rtf lizenz.RTF
+	AddDescription "Richtlinien ( Legende ) fuer die Arbeits- und Entwicklungsumgebung" ?nviron*ent*uideline*.txt ?nviron*ent*uideline*.rtf ?nviron*ent*uideline*.pef ?nviron*ent*uideline*.Txt ?nviron*ent*uideline*.Rtf ?nviron*ent*uideline*.Pdf ?nviron*ent*uideline*.TXT ?nviron*ent*uideline*.RTF ?nviron*ent*uideline*.PDF
+	AddDescription "Richtlinien" ?*uideline*.txt ?*uideline*.rtf ?*uideline*.pef ?*uideline*.Txt ?*uideline*.Rtf ?*uideline*.Pdf ?*uideline*.TXT ?*uideline*.RTF ?*uideline*.PDF
+
+
+
+	AddDescription "Hilfs-Dokument: Benchmark: Performance ( MS-Excel Dokument )" _doc?/?*enchmark/?*erformance*.xls /*doc/?*enchmark/?*erformance*.xls
+	AddDescription "(Hilfs-)Dokumente: Benchmark ( Performance )" _doc?/?*enchmark /*doc/?*enchmark _doc?/?*erformance /*doc/?*erformance
+	AddDescription "Richtlinien-Dokumente: Richtlinien ( Legends )" _doc?/?*legends /*doc/?*legends	
+	AddDescription "Richtlinien-Dokumente: Richtlinie ( Legend )" _doc?/?*legend /*doc/?*legend
+	AddDescription "(Hilfs-)Dokumente / Beschreibungen / Handbuecher" _doc /*doc 
+
+
+
+	AddDescription "Icon" _*.ico _*.Ico _*.ICO
+	AddDescription "Icon: Favouriten Icon ( Lesezeichen )" *favicon.ico *favicon.Ico *favicon.ICO *favicon*.ico *favcicon*.Ico *favicon*.ICO
+	AddDescription "Icon ( Bild ): Apple Touch" apple-touch-icon.png apple-touch-icon.Png apple-touch-icon.PNG apple*ic*.png apple*ic*.Png apple*ic*.PNG apple*touch*.png apple*touch*.Png apple*touch*.PNG 
+	AddDescription "Icon ( Bild ): Favouriten Icon" *favicon.png *favicon.Png *favicon.PNG *favicon*.png *favicon*.Png *favicon*.PNG 
+
+
+
+	AddDescription "Bild: Logo" *logo.png *logo.Png *logo.PNG *logo*.png *logo*.Png *logo*.PNG *logo.jpg *logo.Jpg *logo.JPG *logo*.jpg *logo*.Jpg *logo*.JPG *logo.jpeg *logo.Jpeg *logo.JPEG *logo*.jpeg *logo*.Jpeg *logo*.JPEG
+	AddDescription "Bild: Soziale Netzwerke ( Aufloesung: Hoch )" *social*high.png *social*high.Png *social*high.PNG *social*high.jpg *social*high.Jpg *social*high.JPG *social*high.jpeg *social*high.Jpeg *social*high.JPEG *social*high*.png *social*high*.Png *social*high*.PNG *social*high*.jpg *social*high*.Jpg *social*high*.JPG *social*high*.jpeg *social*high*.Jpeg *social*high*.JPEG
+	AddDescription "Bild: Soziale Netzwerke ( Aufloesung: Niedrig )" *social*low.png *social*low.Png *social*low.PNG *social*low.jpg *social*low.Jpg *social*low.JPG *social*low.jpeg *social*low.Jpeg *social*low.JPEG *social*low*.png *social*low*.Png *social*low*.PNG *social*low*.jpg *social*low*.Jpg *social*low*.JPG *social*low*.jpeg *social*low*.Jpeg *social*low*.JPEG	
+	AddDescription "Bild: Soziale Netzwerke" *social*.png *social*.Png *social*.PNG *social*.jpg *social*.Jpg *social*.JPG *social*.jpeg *social*.Jpeg *social*.JPEG
+
+	AddDescription "Bild: Thumb(nail) ( Farbtiefe: 8-Bit / Aufloesung: Hoch )" *thumb*8-Bit*high.png *thumb*8-Bit*high.Png *thumb*8-Bit*high.PNG *thumb*8-Bit*high.jpg *thumb*8-Bit*high.Jpg *thumb*8-Bit*high.JPG *thumb*8-Bit*high.jpeg *thumb*8-Bit*high.Jpeg *thumb*8-Bit*high.JPEG *thumb*8-Bit*high*.png *thumb*8-Bit*high*.Png *thumb*8-Bit*high*.PNG *thumb*8-Bit*high*.jpg *thumb*8-Bit*high*.Jpg *thumb*8-Bit*high*.JPG *thumb*8-Bit*high*.jpeg *thumb*8-Bit*high*.Jpeg *thumb*8-Bit*high*.JPEG
+	AddDescription "Bild: Thumb(nail) ( Farbtiefe: 8-Bit / Aufloesung: Niedrig )" *thumb*8-Bit*low.png *thumb*8-Bit*low.Png *thumb*8-Bit*low.PNG *thumb*8-Bit*low.jpg *thumb*8-Bit*low.Jpg *thumb*8-Bit*low.JPG *thumb*8-Bit*low.jpeg *thumb*8-Bit*low.Jpeg *thumb*8-Bit*low.JPEG *thumb*8-Bit*low*.png *thumb*8-Bit*low*.Png *thumb*8-Bit*low*.PNG *thumb*8-Bit*low*.jpg *thumb*8-Bit*low*.Jpg *thumb*8-Bit*low*.JPG *thumb*8-Bit*low*.jpeg *thumb*8-Bit*low*.Jpeg *thumb*8-Bit*low*.JPEG
+	AddDescription "Bild: Thumb(nail) ( Farbtiefe: 8-Bit )" *thumb*8-Bit.png *thumb*8-Bit.Png *thumb*8-Bit.PNG *thumb*8-Bit.jpg *thumb*8-Bit.Jpg *thumb*8-Bit.JPG *thumb*8-Bit.jpeg *thumb*8-Bit.Jpeg *thumb*8-Bit.JPEG *thumb*8-Bit*.png *thumb*8-Bit*.Png *thumb*8-Bit*.PNG *thumb*8-Bit*.jpg *thumb*8-Bit*.Jpg *thumb*8-Bit*.JPG *thumb*8-Bit*.jpeg *thumb*8-Bit*.Jpeg *thumb*8-Bit*.JPEG
+
+	AddDescription "Bild: Thumb(nail) ( Farbtiefe: 24-Bit / Aufloesung: Hoch )" *thumb*24-Bit*high.png *thumb*24-Bit*high.Png *thumb*24-Bit*high.PNG *thumb*24-Bit*high.jpg *thumb*24-Bit*high.Jpg *thumb*24-Bit*high.JPG *thumb*24-Bit*high.jpeg *thumb*24-Bit*high.Jpeg *thumb*24-Bit*high.JPEG *thumb*24-Bit*high*.png *thumb*24-Bit*high*.Png *thumb*24-Bit*high*.PNG *thumb*24-Bit*high*.jpg *thumb*24-Bit*high*.Jpg *thumb*24-Bit*high*.JPG *thumb*24-Bit*high*.jpeg *thumb*24-Bit*high*.Jpeg *thumb*24-Bit*high*.JPEG
+	AddDescription "Bild: Thumb(nail) ( Farbtiefe: 24-Bit / Aufloesung: Niedrig )" *thumb*24-Bit*low.png *thumb*24-Bit*low.Png *thumb*24-Bit*low.PNG *thumb*24-Bit*low.jpg *thumb*24-Bit*low.Jpg *thumb*24-Bit*low.JPG *thumb*24-Bit*low.jpeg *thumb*24-Bit*low.Jpeg *thumb*24-Bit*low.JPEG *thumb*24-Bit*low*.png *thumb*24-Bit*low*.Png *thumb*24-Bit*low*.PNG *thumb*24-Bit*low*.jpg *thumb*24-Bit*low*.Jpg *thumb*24-Bit*low*.JPG *thumb*24-Bit*low*.jpeg *thumb*24-Bit*low*.Jpeg *thumb*24-Bit*low*.JPEG
+	AddDescription "Bild: Thumb(nail) ( Farbtiefe: 24-Bit )" *thumb*24-Bit.png *thumb*24-Bit.Png *thumb*24-Bit.PNG *thumb*24-Bit.jpg *thumb*24-Bit.Jpg *thumb*24-Bit.JPG *thumb*24-Bit.jpeg *thumb*24-Bit.Jpeg *thumb*24-Bit.JPEG *thumb*24-Bit*.png *thumb*24-Bit*.Png *thumb*24-Bit*.PNG *thumb*24-Bit*.jpg *thumb*24-Bit*.Jpg *thumb*24-Bit*.JPG *thumb*24-Bit*.jpeg *thumb*24-Bit*.Jpeg *thumb*24-Bit*.JPEG
+
+
+
+	AddDescription "Bild: Thumb(nail) ( Aufloesung: Hoch )" *thumb*high.png *thumb*high.Png *thumb*high.PNG *thumb*high.jpg *thumb*high.Jpg *thumb*high.JPG *thumb*high.jpeg *thumb*high.Jpeg *thumb*high.JPEG *thumb*high*.png *thumb*high*.Png *thumb*high*.PNG *thumb*high*.jpg *thumb*high*.Jpg *thumb*high*.JPG *thumb*high*.jpeg *thumb*high*.Jpeg *thumb*high*.JPEG
+	AddDescription "Bild: Thumb(nail) ( Aufloesung: Niedrig )" *thumb*low.png *thumb*low.Png *thumb*low.PNG *thumb*low.jpg *thumb*low.Jpg *thumb*low.JPG *thumb*low.jpeg *thumb*low.Jpeg *thumb*low.JPEG *thumb*low*.png *thumb*low*.Png *thumb*low*.PNG *thumb*low*.jpg *thumb*low*.Jpg *thumb*low*.JPG *thumb*low*.jpeg *thumb*low*.Jpeg *thumb*low*.JPEG
+	AddDescription "Bild: Thumb(nail)" *thumb*.png *thumb*.Png *thumb*.PNG *thumb*.jpg *thumb*.Jpg *thumb*.JPG *thumb*.jpeg *thumb*.Jpeg *thumb*.JPEG
+
+	AddDescription "Bild: 1x1 Pixel CSS Fix" blind.gif blind.Gif blind.GIF shim.gif shim.Gif shim.GIF clear.gif clear.Gif clear.GIF 
+	AddDescription "Bild: 1x1 Pixel CSS Fix" blind.png blind.Png blind.PNG shim.png shim.Png shim.PNG clear.png clear.Png clear.PNG 
+	AddDescription "Bild: Loader Event Handler" *loading.gif *loading.Gif *loading.GIF *loading.png *loading.Png *loading.PNG
+
+
+	AddDescription "Bild: Filter: Stoereffekt" *filter/*disturb*.png *filter/*Disturb*.png *filter/*disturb*.Png *filter/*Disturb*.Png *filter/*disturb*.PNG *filter/*Disturb*.PNG
+	AddDescription "Bild: Filter: Scanlines ( Videoeffekt )" *filter/*scanline*.png *filter/*scanline*.png *filter/*scanline*.Png *filter/*scanline*.Png *filter/*scanline*.PNG *filter/*scanline*.PNG
+
+	AddDescription "Bild: Muster: Schatten: Bottom / Unten" *shader/bottom.png *shader/bottom.Png *shader/bottom.PNG
+	AddDescription "Bild: Muster: Schatten: Top / Oben" *shader/top.png *shader/top.Png *shader/top.PNG	
+	AddDescription "Bild: Muster: Schatten: Left / Links" *shader/left.png *shader/left.Png *shader/left.PNG
+	AddDescription "Bild: Muster: Schatten: Right / Rechts" *shader/right.png *shader/right.Png *shader/right.PNG	
+
+	AddDescription "Bibliothek: Objekte: Verschiedenes / Sonstiges" _assets/objects/_misc _assets/objects/misc _assets/object/_misc _assets/object/miscellaneous _assets/objects/_miscellaneous _assets/objects/miscellaneous _assets/object/_miscellaneous _assets/object/miscellaneous
+	AddDescription "Verschiedenes / Sonstiges" *_misc *.misc *misc *_miscellaneous *.miscellaneous *miscellaneous
+	AddDescription "Dienstprogramme" *_uitls *.utils *utils
+
+
+
+#	AddDescription "Verschiedene / Sonstige Bibliothek Sammlungen" _asset/*/_misc /_asset/*/_misc _assets/*/_misc /_assets/*/_misc _asset/*/misc /_asset/*/misc _assets/*/misc /_assets/*/misc
+	AddDescription "Sammlung / Bibliothek" _asset /_asset _assets /_assets
+	AddDescription "Adobe Action Script Sammlung / Bibliothek / Komponenten" _as /_as	
+	AddDescription "Bibliothek: Objekte: Icon(s)" _assets/objects/_icn _assets/objects/icn _assets/object/_icn _assets/object/icon _assets/objects/_icon _assets/objects/icon _assets/object/_icon _assets/object/icon _assets/object/icons _assets/objects/_icons _assets/objects/icons _assets/object/_icons _assets/object/icons
+
+	AddDescription "JavaScript Bibliothek / Komponenten: Dokument Objekt Model ( YAHOO )" _dom*YAHOO*.js _dom*YAHOO*.Js _dom*YAHOO*.JS _dom*yahoo*.js _dom*yahoo*.Js _dom*yahoo*.JS
+	AddDescription "JavaScript Bibliothek / Komponenten: Dokument Objekt Model ( Google )" _dom*Google*.js _dom*Google*.Js _dom*Google*.JS _dom*google*.js _dom*google*.Js _dom*google*.JS _dom*gs*.js _dom*gs*.Js _dom*gs*.JS	
+	AddDescription "JavaScript Bibliothek / Komponenten: Dokument Objekt Model" _dom*.js _dom*.Js _dom*.JS
+
+	AddDescription "JavaScript Fix Bibliothek / Komponenten: Unity" unit*fix.js unit*fix.Js unit*fix.JS
+
+
+
+	AddDescription "G4UI JavaScript Bibliothek / Komponenten: Verzeichniss Handler" _basic_listing.js _basic_listing.Js _basic_listing.JS
+	AddDescription "G4UI JavaScript Bibliothek / Komponenten: Maus Handler ( Optional )" _handle_hover*.js _handle_hover*.Js _handle_hover*.JS
+	AddDescription "G4UI JavaScript Bibliothek / Komponenten: Auswahl Handler ( Optional )" _handle_mouse*.js _handle_mouse*.Js _handle_mouse*.JS
+	AddDescription "G4UI JavaScript Bibliothek / Komponenten: Ereigniss Load-Handle ( Optional )" _handle_*loader*.js _handle_*loader*.Js _handle_*loader*.JS _handle_*Loader*.js _handle_*Loader*.Js _handle_*Loader*.JS
+	AddDescription "G4UI JavaScript Bibliothek / Komponenten: Ereigniss Handle ( Optional )" _handle_event*.js _handle_event*.Js _handle_event*.JS
+	AddDescription "G4UI JavaScript Bibliothek / Komponenten: Handles ( Optional )" _handle*.js _handle*.Js _handle*.JS
+
+	AddDescription "PHP constructor.ui.html Komponentvolage: Copyright" off.inc off.Inc off.INC
+
+	AddDescription "PHP constructor.ui.meta Komponentvolage: Links, Verweise und ausgelagerte Bibliotheken und Komponenten" head-lnk*.php head-link*.php
+	AddDescription "PHP constructor.ui.meta Komponentvolage: META Spezifikationen" head-meta*.php	
+
+	AddDescription "PHP constructor.ui.head Komponentvolage: CSS Klassen" head-css*.php
+	AddDescription "PHP constructor.ui.head Komponentvolage: Google Javacript" head-js-gatc*.php head-script-gatc*.php
+	AddDescription "PHP constructor.ui.head Komponentvolage: Javascript" head-js*.php head-script*.php
+	
+	AddDescription "PHP constructor.ui.body Komponentvolage: Hintergund" body-background*.php
+	AddDescription "PHP constructor.ui.body Komponentvolage: Inhalt ( Bilder / Gallerie )" body-content*img*.php	
+	AddDescription "PHP constructor.ui.body Komponentvolage: Inhalt ( Allgemein )" body-content*.php	
+	AddDescription "PHP constructor.ui.body Komponentvolage: Fusszeile" body-footer*.php
+	AddDescription "PHP constructor.ui.body Komponentvolage: Javacript ( Google )" body-js-gatc*.php body-script-gatc*.php
+	AddDescription "PHP constructor.ui.body Komponentvolage: Javascript ( Inline )" body-js*.php body-script*.php
+	AddDescription "PHP constructor.ui.body Komponentvolage: Navigation ( Oben versteckt )" body-nav-*Wrapper*top*.php
+	AddDescription "PHP constructor.ui.body Komponentvolage: Haupt-Navigation ( versteckt )" body-nav-*Wrapper*main*.php	
+	AddDescription "PHP constructor.ui.body Komponentvolage: Unter/Sub-Navigation ( versteckt )" body-nav-*Wrapper*sub*.php		
+	AddDescription "PHP constructor.ui.body Komponentvolage: Navigation ( Unten versteckt )" body-nav-*Wrapper*bottom*.php
+	AddDescription "PHP constructor.ui.body Komponentvolage: Navigation ( versteckt )" body-nav-*Wrapper*.php	
+	AddDescription "PHP constructor.ui.body Komponentvolage: Haupt-Navigation" body-nav*main*.php		
+	AddDescription "PHP constructor.ui.body Komponentvolage: Unter/Sub-Navigation" body-nav*sub*.php
+	AddDescription "PHP constructor.ui.body Komponentvolage: Navigation" body-nav*.php	
+
+	AddDescription "PHP constructor.ui.body Komponentvolage: Plug-In / Dienst / Applet / Widget" widget-*.php
+	AddDescription "PHP constructor.ui.body Komponentvolage: Google Translation API" api-google-translation*.php	
+
+	AddDescription "PHP constructor.ui.html Komponentvolage: Javascript ( Extern )" html-js*.php html-script*.php	
+
+	AddDescription "PHP Sammlung / Bibliothek / Komponenten" _net/_php /_net/_php	
+
+
+
+#	Liste von besondere Dateierweiterungen:
+
+	AddDescription "Adobe Photoshop Einstellungen: Farbpalette / -felder ( Standard CS4 )" *default*cs4*.aco* *default*cs4*.aco *default*cs4*.Aco *default*cs4*.Aco *defaul*cs4*.ACO *default*CS4*.aco* *default*CS4*.aco *default*CS4*.Aco *default*CS4*.Aco *defaul*CS4*.ACO
+	AddDescription "Adobe Photoshop Einstellungen: Farbpalette / -felder ( Standard )" *default*.aco* *default*.aco *default*.Aco *default*.Aco *default*.ACO *default*.ACO
+
+	AddDescription "Adobe Photoshop Voreinstellungen: Farbfelder ( Preset )" *preset*.ase* *preset*.ase *preset*.Ase *preset*.Ase *preset*.ASE *preset*.ASE
+	AddDescription "Adobe Photoshop Einstellungen: Farbfelder ( Basis )" *basic*.ase* *basic*.ase *basic*.Ase *basic*.Ase *basic*.ASE *basic*.ASE
+	AddDescription "Adobe Photoshop Einstellungen: Farbfelder ( Verlauf )" *gradient*.ase* *gradient*.ase *gradient*.Ase *gradient*.Ase *gradient*.ASE *gradient*.ASE
+	AddDescription "Adobe Photoshop Einstellungen: Farbfelder ( Resourcen )" *-res*.ase* *-res*.ase *res*.Ase *-res*.Ase *-res*.ASE *-res*.ASE
+
+	AddDescription "Adobe Photoshop Einstellungen: Farbpalette / -felder ( Basis )" *basic*.aco* *basic*.aco *basic*.Aco *basic*.Aco *basic*.ACO *basic*.ACO
+	AddDescription "Adobe Photoshop Einstellungen: Farbpalette / -felder ( Partikell )" *particle*.aco* *particle*.aco *particle*.Aco *particle*.Aco *particle*.ACO *particle*.ACO
+	AddDescription "Adobe Photoshop Einstellungen: Farbpalette / -felder ( Shutterstock )" *shutterstock*.aco* *shutterstock*.aco *shutterstock*.Aco *shutterstock*.Aco *shutterstock*.ACO *shutterstock*.ACO
+	AddDescription "Adobe Photoshop Einstellungen: Farbpalette / -felder ( Gemischt )" *misc*various*.aco* *misc*various*.aco *misc*various*.Aco *misc*various*.Aco *misc*various*.ACO *misc*various*.ACO
+	AddDescription "Adobe Photoshop Einstellungen: Farbpalette / -felder ( Optional )" *misc*.aco* *misc*.aco *misc*.Aco *misc*.Aco *misc*.ACO *misc*.ACO		
+	AddDescription "Adobe Photoshop Voreinstellungen: Farbpalette / -felder" _preset*_colorSwatches _presets*_colorSwatches
+	
+	AddDescription "Adobe Photoshop Einstellungen: Farbpalette / -felder" _colorSwatches
+	AddDescription "Adobe Photoshop Einstellungen: Farbfelder" *.ase* *.ase *.Ase *.Ase *.ASE *.ASE
+	AddDescription "Adobe Photoshop Einstellungen: Farbpalette / -felder" *.aco* *.aco *.Aco *.Aco *.ACO *.ACO
+	AddDescription "Adobe Photoshop Einstellungen: Farben / Farb-Profil ( ISO Coated )" *iso*.csf* *iso*.csf *iso*.Csf *iso*.Csf *iso*.CSF *iso*.CSF *ISO*.csf* *ISO*.csf *ISO*.Csf *ISO*.Csf *ISO*.CSF *ISO*.CSF
+	AddDescription "Adobe Photoshop Einstellungen: Farben / Farb-Profil" *.csf* *.csf *.Csf *.Csf *.CSF *.CSF
+	AddDescription "Adobe Photoshop Einstellungen: Proof ( ISO Coated )" *iso*.psf* *iso*.psf *iso*.Psf *iso*.Psf *iso*.PSF *iso*.PSF *ISO*.psf* *ISO*.psf *ISO*.Psf *ISO*.Psf *ISO*.PSF *ISO*.PSF	
+	AddDescription "Adobe Photoshop Einstellungen: Proof" *.psf* *.psf *.Psf *.Psf *.PSF *.PSF
+
+
+
+#	Liste von Dateierweiterungen:
+#	http://de.wikipedia.org/wiki/Liste_von_Dateinamenserweiterungen
+#	http://www.blien.de/ralf/cad/db/datform/
+
+	
+
+	AddDescription "HTML-Dokument" *.htm* *.html *.shtml *.dhtml 
+	AddDescription "PHP-Dokument" *.php *.php3
+	AddDescription "GIF-Bild ( Zeigen )" *.gif
+#   AddDescription "legacy compuserve GIF image" .gif
+	
+	AddDescription "JPEG-Bild ( Zeigen )" *.jpg
+
+#	AddDescription "jpeg compressed photo image" .jpg .jpeg
+	
+	AddDescription "ZIP-Archiv ( Zeigen )" *.zip
+	AddDescription "Adobe PDF-Dokument ( Anzeigen )" *.pdf
+	AddDescription "EPS-Dokument ( Zeigen )" *.eps *.EPS
+	
+	AddDescription "MP3-Musik Datei ( Abspielen )" *.mp3
+	AddDescription "Musik Datei ( Abspielen )" *.wav *.aif *.aiff
+	AddDescription "Microsoft Word Dokument ( Zeigen )" *.doc
+	AddDescription "Text-Dokument ( Anzeigen )" *.txt
+	AddDescription "(Eingebundenes) Include-Dokument" *.inc
+	AddDescription "Video" *.mpg
+	AddDescription "Flash-Film ( Abspielen )" *.swf
+	AddDescription "Flash Entwicklungsdatei ( Herunterladen )" *.fla
+	AddDescription "Sketchbook ( G4UI Resource File )" *.skb 
+	AddDescription "Vektor-Grafik ( Mit Adobe oeffnen )" .ps .ai .eps .Ps .PS .Ai .AI .Eps .EPS
+#	AddDescription "vector (scalable) image" .ps .ai .eps
+	
+	AddDescription "Windows executable" .exe .Exe .EXE
+   	AddDescription "Server-Side executable" .cgi .Cgi .CGI
+	AddDescription "Mac binhex archive" .hqx .Hqx .HQX
+
+	AddDescription "Archiv: GZIP compressed tar archive" .tgz .tar.gz
+   	AddDescription "Archiv: tar (tape) archive" .tar .Tar .TAR
+   	AddDescription "Archiv: GZIP compressed document" .Z .z .gz .GZ
+    AddDescription "Archiv: ZIP compressed document" .zip .Zip .ZIP
+    AddDescription "Archiv: highly compressed rar archive" .rar .Rar .RAR
+    AddDescription "Archiv: highly compressed bzip archive" .bz2 .bz 
+    AddDescription "Archiv: stuffit archive" .sit .Sit .SIT
+    AddDescription "Archiv: stuffitX archive" .sitx .Sitx .SITX
+    AddDescription "Archiv: ace compressed archive" .ace .Ace .ACE
+    AddDescription "Archiv: arj compressed archive" .arj .Arj .ARJ
+
+   	AddDescription "Portable Network Graphic" .png .Png .PNG
+  
+    AddDescription "Kaskadierendes Stylesheet-Dokument" .css .Css .CSS
+#  	AddDescription "Cascading-Style-Sheet" .css
+	
+    AddDescription "DocType Definition" .dtd .Dtd .DTD
+	
+    AddDescription "Extensible Markup Language" .xml .Xml .XML
+    AddDescription "Win32 compressed html help" .chm .Chm .CHM 
+    AddDescription "Adobe Acrobat Dokument ( Zeigen )" .pdf .Pdf .PDF
+#   AddDescription "Adobe Acrobat Dokument ( Portable Document )" .pdf
+
+
+
+	
+#   AddDescription "Text Dokument ( plain/text )" .txt .Txt .TXT
+    AddDescription "Text Dokument ( Zeigen )" .txt .diz .nfo .faq .readme .me .Faq .FAQ
+
+
+    AddDescription "unix man page" .man .Man .MAN
+	
+	AddDescription "E-Mail Daten" .eml .mbox .Eml .EML 
+	
+    AddDescription "Dokument ( Zeigen )" .doc .Doc .DOC
+    AddDescription "Pearl Script" .pl .Pl .PL
+    AddDescription "Python Script" .py .Py .PY
+    AddDescription "PHP Source" .phps .Phps .PHPS
+    AddDescription "PHP Script" .php  .php3 .php4 .Php .PHP 
+    AddDescription "dunno what for" .for .For .FOR
+    AddDescription "DVI Dokument" .dvi .Dvi .DVI
+    AddDescription "7-bit uu encoded (news) file" .uu .uue .Uu .UU .Uue .UUE
+
+    AddDescription "Adobe JavaScript Datei ( Mit ExtendScript gradientkit CS4 oeffnen )" .jsx	
+    AddDescription "JavaScript ( Anzeigen )" .js	
+	
+	AddDescription "JavaCode" .java .Java .JAVA
+    AddDescription "Unix Shell Script" .sh .shar .csh .ksh .command
+    AddDescription "OS X clickable shell script" .command .Command .COMMAND
+    AddDescription "BATCH Stapelanweisung ( Oeffnen / Ausfuehren )" .bat .Bat .BAT
+	
+
+
+	AddDescription "Konfiguration" .conf .Conf .CONF
+    AddDescription "Mac OS X terminal" .term .Term .TERM
+    AddDescription "smells like rubber" .tex .Tex .TEX
+    AddDescription "Core" core .o .O
+    AddDescription "Code" .c .C
+    AddDescription "Code" .h .H
+    AddDescription "BitTorrent file" .torrent .Torrent .TORRENT
+	
+#   AddDescription "Windows Link / Verweis" .lnk .url .Lnk .Url .LNK .URL
+
+    AddDescription "Thema" _theme /*theme _Theme /*Theme
+    AddDescription "Muster" _pattern /*pattern /pattern _Pattern /*Pattern /Pattern _patterns /patterns /*patterns _Patterns /*Patterns /Patterns
+    AddDescription "Hintergrund" _background /*background _Background /*Background _backgrounds /*backgrounds _Backgrounds /*Backgrounds _hintergrund /*hintergrund _Hintergrund /*Hintergrund
+
+    AddDescription "Kaskadierende Stylesheet Sammlung" _css /*css _Css /*Css _CSS /*CSS
+#  	AddDescription "Cascading-Style-Sheet Libary" _css /*css _Css /*Css _CSS /*CSS
+
+	AddDescription "Adobe Actionkit Stapelverarbeitung" *.atn* *.atn *.Atn *.Atn *.ATN *.ATN
+
+	AddDescription "ICC Farb-Profil: Adobe Profil Einstellungen" ICC/*adobe*profil ICC/*Adobe*Profil ICC/adobe*profil ICC/Adobe*Profil ICC/*adobe*profiles ICC/*Adobe*Profiles ICC/adobe*profiles ICC/Adobe*Profiles ICC/adobe profiles ICC/Adobe Profiles
+	AddDescription "ICC Farb-Profil: ECI / European Color Initiative" ICC/*ECI*( ICC/ECI*( ICC/ECI (
+
+	AddDescription "ICC Farb-Profil" .icc .Icc .ICC _icc _Icc _ICC /*icc /*Icc /*ICC
+	AddDescription "Pantone Farb-Profil" .pantone .Pantone .PANTONE _pantone _Pantone _PANTONE /*pantone /*Pantone /*PANTONE
+
+	AddDescription "Google Earth - Keyhole Markup Language File" *.kml *.Kml *.KML
+	
+
+	AddDescription "Bibliothek: Download" _assets/download _assets/*download
+	AddDescription "Bibliothek: Upload" _assets/upload	_assets/*upload	 
+
+	AddDescription "Bibliothek: Objekte: Bottom" _assets/objects/_bottom _assets/objects/bottom _assets/object/_bottom _assets/object/bottom
+	AddDescription "Bibliothek: Objekte: Content ( Inhalt )" _assets/objects/_content _assets/objects/content _assets/object/_content _assets/object/content
+	AddDescription "Bibliothek: Objekte: Verschiedenes / Sonstiges" _assets/objects/_misc _assets/objects/misc _assets/object/_misc _assets/object/misc
+	AddDescription "Bibliothek: Objekte: Navigation" _assets/objects/_nav _assets/objects/nav _assets/object/_nav _assets/object/nav
+	AddDescription "Bibliothek: Objekte: Top" _assets/objects/_top _assets/objects/top _assets/object/_top _assets/object/top
+	
+	AddDescription "32-Bit" "32-Bit"
+	AddDescription "64-Bit" "64-Bit"	
+
+
+
+
+#	G4UI Batch Profile Presets 
+
+	AddDescription "Schnittstelle zur Anwendungsprogrammierung" _api* .api* /*api _Api* .Api* /*Api _API* .API* /*API
+	AddDescription "Applikation" _app* .app* /*app _App* .App* /*App _APP* .APP* /*APP
+	AddDescription "Adobe Flex Anwendung" _flex* .flex* /*flex _Flex* .Flex* /*Flex _FLEX* .FLEX* /*FLEX
+	AddDescription "Plattformuebergreifend Rich Internet Applikations (RIAs)" _ria* .ria* /*ria _Ria* .Ria* /*Ria _RIA* .RIA* /*RIA
+	
+
+	AddDescription "Korrektur" _fix* .fix* /*fix 
+
+	AddDescription "Beschleunigte und optimierte Bibliotheken" _accelerate* .accelerate* /*accelerate* 
+
+	AddDescription "Generelle Erweiterte Bibliothek" _advanced* .advanced* /*advanced* 
+	AddDescription "Generelle Grund bzw. Basis Bibliothek" _basic* .basic* /*basic* 
+		
+	AddDescription "Klassen Bibliothek" _class* .class* /*class*
+	AddDescription "Handlungen / Ereignisse" _handle* .handle* /*handle*
+	AddDescription "Vorlagen" _template .template /*template
+
+	AddDescription "Resourcen und Quelldateien" _src .src /*src
+			
+	AddDescription "Resourcen und Quelldateien" _res .res /*res _Res .Res /*Res
+	AddDescription "Installations-Archiv" _bin .bin /*bin 
+	AddDescription "Web-Container der Laufzeitumgebung fuer Restriktionen" _etc .etc /*etc	
+
+	AddDescription "Voreinstellungen" presets* Presets* vorinstellungen* Voreinstellungen*
+	AddDescription "Voreinstellung" preset* Preset* einstellung* Einstellung*
+	AddDescription "Einstellungen" settings* einstellungen* *profile Settings* Einstellungen* *Profile
+	AddDescription "Einstellung" setting* einstellung* *profil Setting* Einstellung* *Profil
+	
+	AddDescription "Backup" backup Backup 
+	
+	AddDescription "Druckvorschau" vorschau preview Vorschau Preview
+
+	
+	AddDescription "Verzeichniss" directory *Directory _Directory /*Directory /*_Directory *listing /*listing *Listing /*Listing
+	AddDescription "(Eltern)Verzeichniss" parent*directory *Parent*Directory Parent*Directory /Parent*Directory /*Parent*Directory
+
+#	AddDescription "Vorschau (Web)" *-low
+#	AddDescription "Web-Ansicht (72dpi/ppi)" *72dpi
+
+	AddDescription "PostScript Font Binary Schriftartebdatei" *.pfb *.Pfb *.PFB
+	AddDescription "PostScript Font Metric Schriftartebdatei" *.pfm *.Pfm *.PFM
+	AddDescription "True Type Schriftartebdatei ( Lizenz beachten )" *.ttf *.Ttf *.TTF
+	AddDescription "Schriftfonts / Bibliothek" *_font *_fonts *_Font *_Fonts *schriftfont *schriftfonts *Schriftfont *Schriftfonts
+
+	AddDescription "Bild(er)" image* bild* Image* Bild*
+
+	AddDescription "Klient / Kunde" _client .client /*client
+	AddDescription "G4UI Bibliothek / Komponente / Klasse / Modul" _G4 .G4 /*G4 G4
+	AddDescription "Kompositionen" _comp .comp /*comp
+	
+	AddDescription "Hintegruende" _backgrounds .backgrounds backgrounds /*backgrounds _Backgrounds .Backgrounds Backgrounds /*Backgrounds _hintegreunde .hintegreunde hintegreunde /*hintegruende _Hintegruende .Hintegruende Hintegruende /*Hintegruende 
+	AddDescription "Hintegrund" _background .background background /*background _Background .Background Background /*Background _hintegrund .hintegrund hintegrund /*hintegrund _Hintegrund .Hintegrund Hintegrund /*Hintegrund 
+
+	AddDescription "Icon Bibliothek" _icons .icons icons icn
+	
+	AddDescription "Objekte / Objekt Kataloge" _objects .objects *objects
+	 
+	AddDescription "Farben" _color .color /*color /*color 
+	AddDescription "Filter" _filter .filter filter /*filter _Filter .Filter Filter /*Filter 
+	AddDescription "Schatten" _shader .shader shader /*shader _Shader .Shader Shader /*Shader 
+	AddDescription "Muster / Vorlage" _pattern .pattern pattern /*pattern _Pattern .Pattern Pattern /*Pattern _patterns patterns .patterns /*patterns _Patterns .Patterns Patterns /*Patterns
+	AddDescription "Skin Sammlung: Bundle" _shader .skin/.bundle /*skin/*bundle _skin/_bundle .Skin/.Bundle /*Skin/*Bundle
+	AddDescription "Skin(s)" _shader .skin /*skin _skin .Skin /*Skin 	
+
+	AddDescription "Implementierungen" _inherits .inherits /*inherits _Inherits .Inherits /*Inherits
+	AddDescription "Implementierung" _inherit .inherit /*inherit _Inherit .Inherit /*Inherit
+	
+	AddDescription "Implementierungen" _implements .implements /*implements _Implements .Implenents /*Implements
+	AddDescription "Implementierung" _implement .implement /*implement _Implement .Implenent /*Implement
+	
+	AddDescription "Externe Ausglagerung" _external .external /*external _Extenal .External /*External
+
+	AddDescription "Exportiert / Ausgelagert" _export .export /*export _Export .Export /*Export	
+	AddDescription "Importiert / Eingebunden" _import .import /*import _Import .Import /*Import
+
+	
+	
+
+
+#	AddDescription "Unbekannt" */
+
+	AddDescription "Revision" _rev- .rev- /*rev- _Rev- .Rev- /*Rev-	
+	AddDescription "Netzwerk" _net .net /*net 
+
+
+# 	Section..
+#   AddDescription "who knows?" .1 .2 .3 .4 .5 .6 .7 .8 .9
+#   AddIcon /icons/small/num.gif   .1 .2 .3 .4 .5 .6 .7 .8 .9
+
+#   AddDescription "Januar" *01 January
+#	AddDescription "Februar" *02 February
+#	AddDescription "Maerz" *03 March
+#	AddDescription "April" *04 
+#	AddDescription "Mai" *05 
+#	AddDescription "Juni" *06 June
+#	AddDescription "Juli" *07 July
+#	AddDescription "August" *08 August
+#	AddDescription "September" *09 
+#	AddDescription "Oktober" *10 October Octobre						
+#	AddDescription "November" *11 
+#	AddDescription "Dezember ( Weihnachten / Sylvester )" *12 
+
+#	AddDescription "Beschreibung" Description
+		
+#	AddDescription "Ordner" /*
+
+#	AddDescription "Unbekannt" */
+
+
+
+	
+
+
+
+#
+# 	################################################################################################################################
+# 	################################################################################################################################
+# 	--------------------------------------------------------------------------------------------------------------------------------
+#	
+#
+
+
+#	.	.	.	.	.	.	.	.	.	.	.	.	.	.	.	.	.	.	.	.	.	.	.	.	.	.	.	.	.	.	.	.	.
+#
+#	INDEX IGNORE DIRECTIVE
+#	
+#	o 	Default: 	IndexIgnore .??* *~ *# HEADER* README* RCS CVS *,v *,t 
+#					IndexIgnore .. *.js *.inc *.php cgi-bin
+#					IndexIgnore readme.html header.html fuss.html err.php assets
+#
+# 	note: this can be anywhere onsite, not neccessarily inside the area covered by this file.
+# 	I personally find a fixed header, and local readme's works best. ymmv.
+#
+# 	IndexIgnore is a set of filenames which directory indexing should ignore
+# 	and not include in the listing.  Shell-style wildcarding is permitted.
+#
+#   				IndexIgnore  .??* *~ *# _notes readme.html header.html HEADER README RCS CVS *,v *,t .DS_Store *.log .. *.js *.inc *.php cgi-bin *.rar httpd.conf Thumbs.db
+
+
+
+	IndexIgnore  .??* *~ *# ~$*
+	
+	IndexIgnore h.html r.html 
+	IndexIgnore readme.html header.html HEADER README RCS CVS 
+	IndexIgnore *,v *,t .DS_Store *.log .Thumbs
+	IndexIgnore *index.*
+
+	IndexIgnore __MACOSX /__MACOSX
+	IndexIgnore /ns
+	IndexIgnore /_notes	
+	IndexIgnore /_temp /temp *.tmp *.Tmp *.TMP	
+
+	IndexIgnore .htaccess .htpasswd .htusers .htgroups *htaccess *htpasswd *htusers *htgroups 
+	
+
+
+#	Older system files for older UI CMS	
+	IndexIgnore .pwd .db .lastModify.db .position.db .position.bak *lastModify.db *position.db *position.bak
+	IndexIgnore .thumbs *thumbs 
+#	IndexIgnore .trash _trash 
+
+#	Server or Account Settings
+	IndexIgnore server.rtf server.txt server.doc server.docx server*.pdf
+	IndexIgnore ftp*.rtf ftp*.txt ftp*.doc ftp*.docx ftp*.pdf
+	IndexIgnore *account*.rtf *account*.txt *account*.doc *account*.docx *account*.pdf 
+
+
+
+#	PLESK Server Settings
+	IndexIgnore /picture_library
+	IndexIgnore /plesk-stat
+	IndexIgnore /css
+	IndexIgnore /test
+	IndexIgnore /img
+		
+
+
+#	G4UI Batch Profile Presets 
+	IndexIgnore *.ftp ftp_script_login.ftp ftp_script_login.bak ftp_script_login.txt ftp_script_logout.ftp ftp_script_logout.bak ftp_script_login.txt 
+	IndexIgnore ftp_x64.exe ftp.exe ftp*.exe ftp*.bat ftp_client_*.ftp ftp_client_*.bak ftp_client_*.bat ftp_client_*.txt 
+	IndexIgnore noscript.php
+	
+	IndexIgnore ?comp*.jp*g ?comp*.gif ?comp*.bmp ?comp*.eps ?comp*.pdf ?comp*.ai ?comp*.ps*
+	IndexIgnore ?dump*.jp*g ?dump*.gif ?dump*.bmp ?dump*.eps ?dump*.pdf ?dump*.ai ?dump*.ps*
+	
+	IndexIgnore "G4UI METADTA.xmp" 	
+	
+#	Other System Misc
+	IndexIgnore boot.txt boot.* ?backup
+	IndexIgnore PerfLogs cgi-bin admin settings* 
+
+#	IndexIgnore loveyouboo.kml
+	IndexIgnore *.kml
+	IndexIgnore _banner.php
+
+	IndexIgnore _header.html _readne.html *header.php *readme.php _liesmich.html liesmich.html
+	IndexIgnore favicon.ico	
+
+#	Windows Misc
+	IndexIgnore Thumbs.db desktop.ini 
+
+#	Other Server Miscs
+	IndexIgnore net2ftp_temp_zhrn net2ftp*
+
+#	IndexIgnore $*
+	
+	IndexIgnore container.rtf container.txt container.doc container.docx container.pdf
+	IndexIgnore phpinfo.php* php*.php* info.php info.htm* 
+	IndexIgnore phpMyAdmin
+	
+#	Kopie(n)
+	IndexIgnore Kopie von* Kopie* *Kopie
+
+
+
+#	G4UI Projekte
+
+
+	IndexIgnore /assets
+	IndexIgnore /_common/_assets/download
+
+	IndexIgnore /_common/_assets/icons/small/README.txt
+	IndexIgnore /_common/_assets/icons/wordpress
+	IndexIgnore /_common/_assets/icons/wordpress/_screenshot
+	IndexIgnore /_common/_assets/icons/wordpress/*.url /_common/_assets/icons/wordpress/*.URL /_common/_assets/icons/wordpress/*.website
+
+#	IndexIgnore /_common
+	IndexIgnore /_common/_bookmarks
+#	IndexIgnore /_common/_lnk	
+	IndexIgnore /_common/_scripts/_src
+	
+#	IndexIgnore ui.loveyouboo.de/_common
+	IndexIgnore /_concept
+	IndexIgnore /_client
+#	IndexIgnore /_user
+	IndexIgnore /_profile
+
+	IndexIgnore /_backup
+	IndexIgnore /_download /_downloads /download /downloads
+	IndexIgnore /_upload /_uploads /upload /uploads
+	
+	IndexIgnore G4UI_Workflow*
+	IndexIgnore G4UI_device*
+	
+	IndexIgnore /_res
+	IndexIgnore /_framework/_GWT
+
+
+
+
+#	G4UI  Links und Verweise
+
+	IndexIgnore /*.php
+	
+	IndexIgnore /_lnk/*.lnk
+	IndexIgnore /_lnk/_author*
+	IndexIgnore /_lnk/*iwonka* /_lnk/*frank*
+	IndexIgnore /_lnk/*test*
+	
+	IndexIgnore */_lnk/ftp*.URL */_lnk/ftp*.url */_lnk/ftp*.website
+
+	IndexIgnore /_net/*_low.jpg /_net/*_low.jpeg /_net/*_low.png /_net/*_low.*
+	IndexIgnore /_net/_team*
+
+	IndexIgnore _net.url
+	IndexIgnore _net.website
+
+	IndexIgnore *pitch.xmp
+	IndexIgnore *yadis.xrds
+	
+	IndexIgnore /_webDAV
+
+
+
+
+#	G4UI  User ( Benutzer )
+
+	IndexIgnore /_user
+	IndexIgnore /_user/*/_avatar/_bin
+	IndexIgnore /_user/*/_avatar/_bio/_history
+
+
+#	G4UI  Media
+
+	IndexIgnore /_media
+
+#				G4UI Media:	Video
+	IndexIgnore /_media/_film /_media/_video /_film /_video
+
+
+#				G4UI Media:	Issue
+#	IndexIgnore /_media/_film /_media/_issue
+
+
+#				G4UI Media:	Musik
+
+	IndexIgnore /_media/_music/_*frisky*
+	IndexIgnore /_media/_music /_media/_musik /_music /_musik
+
+#				G4UI Media:	Stock
+
+	IndexIgnore /_media/_stock /_stock
+	IndexIgnore /_media/_stock/Shutter*
+
+	
+#				G4UI Media:	Logo
+
+#	IndexIgnore /_media/_logo
+
+
+#				G4UI Media:	Themes
+
+	IndexIgnore /_media/_themes /_themes
+	IndexIgnore /_media/_themes/tf* /_media/_themes/themefuse*
+	IndexIgnore /brandcrafters*.*	
+
+	IndexIgnore /Database
+	IndexIgnore /tmp
+	IndexIgnore /uploads
+
+#	IndexIgnore *.themepack
+	
+
+#	Own Misc
+
+	IndexIgnore *container*.txt
+	IndexIgnore *profileData*
+	IndexIgnore *DELL*.themepack
+
+#	IndexIgnore /ui
+#	IndexIgnore /ui/images
+
+# 	OpenX
+
+	IndexIgnore /openx
+
+
+	IndexIgnore _
+
+
+#	.	.	.	.	.	.	.	.	.	.	.	.	.	.	.	.	.	.	.	.	.	.	.	.	.	.	.	.	.	.	.	.	.
+#
+#	INDEX OPTIONS DIRECTIVE
+#	
+#
+#		Documentation:
+#		http://httpd.apache.org/docs/2.0/mod/mod_autoindex.html#indexoptions.fancyindexing
+#
+
+#	-	FancyIndexing
+#		This turns on fancy indexing of directories.
+#
+
+	IndexOptions FancyIndexing
+
+
+#	-	Charset
+#		Default: UTF-8
+
+#	IndexOptions Charset=UTF-8 
+
+
+#	-	Type
+#		Default: text/plain 
+
+#	IndexOptions Type=text/plain 
+
+
+#	-	DescriptionWidth
+#		Default: *, 32, 56, 64, 76
+
+	IndexOptions DescriptionWidth=76
+
+
+#	-	FoldersFirst 
+#	
+#		Default: enable
+#		Require: FancyIndexing
+
+	IndexOptions FoldersFirst 
+
+
+#	-	HTMLTable 
+#  	 	HTMLTable (Experimental, Apache 2.0.23 and later)  
+#
+#		Statt des <pre>-Tags wird ein <table>-tag verwendet.
+#		Deutlich einfacher für die CSS Verifizierzung.
+	  
+#	IndexOptions HTMLTable 
+    
+   
+#	-	IconsAreLinks
+#		This makes the icons part of the anchor for the filename, for fancy indexing.
+   
+#	IndexOptions IconsAreLinks
+
+
+#	- 	IconHeight [=pixels]
+#
+#	o	Default: IconHeight=16
+#
+#    	Presence of this option, when used with IconWidth, will cause the server to include height and width attributes in the img tag for the file icon. This allows browser to precalculate the page layout without having to wait until all the images have been loaded. If no value is given for the option, it defaults to the standard height of the icons supplied with the Apache software.
+
+	IndexOptions IconHeight=16 
+#	IndexOptions IconHeight=24	
+	
+
+
+#	- 	IconWidth [=pixels]
+#
+#	o	Default: IconWidth=16
+#
+#    	Presence of this option, when used with IconWidth, will cause the server to include height and width attributes in the img tag for the file icon. This allows browser to precalculate the page layout without having to wait until all the images have been loaded. If no value is given for the option, it defaults to the standard height of the icons supplied with the Apache software.
+
+	IndexOptions IconWidth=16
+#	IndexOptions IconWidth=24 
+
+
+#	-	IgnoreCase
+#		If this option is enabled, names are sorted in a case-insensitive manner. For instance, if the sort order is ascending by name, and IgnoreCase is enabled, file Zeta will be listed after file alfa
+#
+#	o	Default: enabled
+
+#	IndexOptions IgnoreCase 
+
+
+#	-	IgnoreClient
+#		This option causes mod_autoindex to ignore all query variables from the client, including sort order (implies SuppressColumnSorting.)
+#
+#		e.g: /?C=N;O=D 
+
+#	IndexOptions -IgnoreClient 
+
+#    	* C=N sorts the directory by file name
+#    	* C=M sorts the directory by last-modified date, then file name
+#    	* C=S sorts the directory by size, then file name
+#    	* C=D sorts the directory by description, then file name
+#    	* O=A sorts the listing in Ascending Order
+#    	* O=D sorts the listing in Descending Order
+#    	* F=0 formats the listing as a simple list (not FancyIndexed)
+#    	* F=1 formats the listing as a FancyIndexed list
+#    	* F=2 formats the listing as an HTMLTable FancyIndexed list
+#    	* V=0 disables version sorting
+#    	* V=1 enables version sorting
+#    	* P=pattern lists only files matching the given pattern
+#	
+#		Documentation: 
+#		http://httpd.apache.org/docs/2.0/mod/mod_autoindex.html
+	
+	
+#	SuppressColumnSorting
+
+#	-	NameWidth
+#
+#	o	Default: *
+
+	IndexOptions NameWidth=* 
+	
+
+#	-	ScanHTMLTitles
+#		This enables the extraction of the title from HTML documents for fancy indexing. If the file does not have a description given by AddDescription then httpd will read the document for the value of the title element. This is CPU and disk intensive.
+#
+
+	IndexOptions ScanHTMLTitles
+
+
+#	-	SuppressColumnSorting
+#		If specified, Apache will not make the column headings in a FancyIndexed directory listing into links for sorting. The default behavior is for them to be links; selecting the column heading will sort the directory listing by the values in that column. Prior to Apache 2.0.23, this also disabled parsing the Query Arguments for the sort string. That behavior is now controlled by IndexOptions IgnoreClient in Apache 2.0.23.
+#
+
+#	IndexOptions SuppressColumnSorting
+
+
+#	-	SuppressDescription
+#		This will suppress the file description in fancy indexing listings. By default, no file descriptions are defined, and so the use of this option will regain 23 characters of screen space to use for something else. See AddDescription for information about setting the file description. See also the DescriptionWidth index option to limit the size of the description column.
+#
+
+#	IndexOptions SuppressDescription
+
+
+#	-	SuppressHTMLPreamble
+#	    If the directory actually contains a file specified by the HeaderName directive, the module usually includes the contents of the file after a standard HTML preamble (<html>, <head>, et cetera). The SuppressHTMLPreamble option disables this behaviour, causing the module to start the display with the header file contents. The header file must contain appropriate HTML instructions in this case. If there is no header file, the preamble is generated as usual.
+
+  	IndexOptions SuppressHTMLPreamble 
+
+
+#	-	SuppressIcon (Apache 2.0.23 and later)
+#		This will suppress the icon in fancy indexing listings. Combining both SuppressIcon and SuppressRules yields proper HTML 3.2 output, which by the final specification prohibits img and hr elements from the pre block (used to format FancyIndexed listings.)
+#
+#	o	Default: disable
+
+#  	IndexOptions SuppressIcon 
+
+
+#	-	SuppressLastModified
+#	    This will suppress the display of the last modification date, in fancy indexing listings.
+#
+#	o	Default: enable
+ 
+#  	IndexOptions SuppressLastModified 
+
+
+#	-	SuppressRules (Apache 2.0.23 and later)
+#	    This will suppress the horizontal rule lines (hr elements) in directory listings. Combining both SuppressIcon and SuppressRules yields proper HTML 3.2 output, which by the final specification prohibits img and hr elements from the pre block (used to format FancyIndexed listings.)
+
+#  	IndexOptions SuppressRules 
+
+
+#	-	SuppressSize
+#  		This will suppress the file size in fancy indexing listings.
+
+#  	IndexOptions SuppressSize 
+
+
+#	-	TrackModified (Apache 2.0.23 and later)
+
+
+#  	IndexOptions TrackModified 
+
+
+#	-	VersionSort (Apache 2.0a3 and later)
+
+#  	IndexOptions VersionSort 
+
+
+#	-	Incremental IndexOptions
+#	
+#	<Directory /foo> 
+#		IndexOptions HTMLTable
+#		IndexOptions SuppressColumnsorting 
+#	</Directory>
+#
+
+
+#	<Directory /_download> 
+#			IndexOptions HTMLTable
+#			IndexOptions SuppressColumnsorting 
+#	</Directory>
+
+
+#	<Directory /_client> 
+#			IndexOptions HTMLTable
+#			IndexOptions SuppressColumnsorting 
+#	</Directory>
+
+
+#	<Directory /_media> 
+#			IndexOptions HTMLTable
+#			IndexOptions SuppressColumnsorting 
+#	</Directory>
+
+
+#	<Directory /_uploads> 
+#			IndexOptions HTMLTable
+#			IndexOptions SuppressColumnsorting 
+#	</Directory>
+
+
+
+#	.	.	.	.	.	.	.	.	.	.	.	.	.	.	.	.	.	.	.	.	.	.	.	.	.	.	.	.	.	.	.	.	.
+#
+#	INDEX ORDER DEFAULT DIRECTIVE
+#	
+#	- 	IndexOrderDefault Directive ( Sortierung )
+#		
+#		Ascending or Descending ( A, D )
+#		Value: Date, Size, or Description ( N, M, S, D )
+#
+#	o	Default: Descending Name
+#
+
+	IndexOrderDefault Ascending Name
+		
+	
+
+#	.	.	.	.	.	.	.	.	.	.	.	.	.	.	.	.	.	.	.	.	.	.	.	.	.	.	.	.	.	.	.	.	.
+#
+#	DOCUMENT ROOT DIRECTIVE
+#	
+
+#	DocumentRoot /var/www/virtual/ui.loveyouboo.de/
+#	DocumentRoot /var/www/virtual/ui.loveyouboo.de/htdocs/
+#	
+#	DocumentRoot /kunden/homepages/../...../htdocs/
+#	DocumentRoot /htdocs/
+#	DocumentRoot /httpdocs/
+
+#	DocumentRoot /var/www/virtual/ui.loveyouboo.de
+
+#	DocumentRoot /var/www/virtual/ui.loveyouboo/httpdocs/
+
+
+
+
+
+#	.	.	.	.	.	.	.	.	.	.	.	.	.	.	.	.	.	.	.	.	.	.	.	.	.	.	.	.	.	.	.	.	.
+#
+#	HEADER NAME DIRECTIVE
+#
+# 	you can specify the full name, if you like..
+#
+#	o	HeaderName http://ui.loveyouboo.de/header.html	
+
+
+#	AddType text/html .html
+	
+#	HeaderName header.html 
+#	HeaderName http://ui.loveyouboo.de/header.html
+
+
+	HeaderName /header.html 
+
+
+#	.	.	.	.	.	.	.	.	.	.	.	.	.	.	.	.	.	.	.	.	.	.	.	.	.	.	.	.	.	.	.	.	.
+#
+#	README NAME DIRECTIVE
+#	
+# 	better yet, specify a single fixed location. This will cover *all* the subdirectories
+# 	affected by this .htaccess, and saves you duplicating the same file over and over..
+
+#	o	Default: ReadmeName http://ui.farbdenker.net/readme.html
+
+	
+#	ReadmeName readme.html
+# 	ReadmeName http://ui.loveyouboo.de/readme.html	
+
+	ReadmeName /readme.html 
+
+
+
+
+
+
+# 	################################################################################################################################
+# 	################################################################################################################################
+# 	--------------------------------------------------------------------------------------------------------------------------------
+#	
+#
+#
+#
+#
+# 	--------------------------------------------------------------------------------------------------------------------------------
+#	
+#	KeyNotes:
+#
+# 	Quelle: 		http://corz.org/serv/resources/file_view.htaccess.txt
+# 	Referenz: 		http://wiki.winboard.org/index.php/HTACCESS
+#
+#	- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - --
+#
+#
+# 	Directives controlling the display of server-generated directory listings.
+#   
+
+
+
+#	.	.	.	.	.	.	.	.	.	.	.	.	.	.	.	.	.	.	.	.	.	.	.	.	.	.	.	.	.	.	.	.	.
+# 	
+# 	DECLARE Datenkomprimierung
+# 	
+# 	Alle Bilder (ausser), da es kein Sinn macht,
+# 	komprimierte Daten erneut zu komprimieren,
+# 	welche eine unnötige Serverbelastung mit sich bringt
+# 	
+
+
+#	.	.	.	.	.	.	.	.	.	.	.	.	.	.	.	.	.	.	.	.	.	.	.	.	.	.	.	.	.	.	.	.	.
+# 	
+# 	DECLARE SetOutputFilter
+# 	
+ 	SetEnvIfNoCase Request_URI .(?:gif|jpe?g|png)$ no-gzip dont-vary
+ 	SetEnvIfNoCase Request_URI .(?:exe|t?gz|zip|bz2|sit|rar)$ no-gzip dont-vary
+ 	SetEnvIfNoCase Request_URI .pdf$ no-gzip dont-vary 
+# 	SetEnvIfNoCase Request_URI .(?:txt|rtf)$ !no-gzip !gzip-only-text/html
+ 	SetEnvIfNoCase Request_URI .(?:txt|rtf)$ gzip-only-text/html
+ 	SetEnvIfNoCase Request_URI .(?:js|css)$ no-gzip dont-vary
+
+# 	Ältere Browser die keine Komprimierung untestützen, werden von der Option zur komprimierten Darstellung ausschließen
+# 	
+	BrowserMatch ^Mozilla/4 gzip-only-text/html
+	BrowserMatch ^Mozilla/4.0[678] no-gzip
+	BrowserMatch bMSIE !no-gzip !gzip-only-text/html
+
+
+
+
+#	.	.	.	.	.	.	.	.	.	.	.	.	.	.	.	.	.	.	.	.	.	.	.	.	.	.	.	.	.	.	.	.	.
+# 	
+# 	DECLARE Datenkomprimierung
+#
+
+<IfModule mod_mime.c>
+
+    AddEncoding x-compress Z
+    AddEncoding x-gzip gz tgz
+    AddLanguage da .dk
+    AddLanguage nl .nl
+    AddLanguage en .en
+    AddLanguage et .ee
+    AddLanguage fr .fr
+    AddLanguage de .de
+    AddLanguage el .el
+    AddLanguage he .he
+    AddCharset ISO-8859-8 .iso8859-8
+    AddLanguage it .it
+    AddLanguage ja .ja
+    AddCharset ISO-2022-JP .jis
+    AddLanguage kr .kr
+    AddCharset ISO-2022-KR .iso-kr
+    AddLanguage nn .nn
+    AddLanguage no .no
+    AddLanguage pl .po
+    AddCharset ISO-8859-2 .iso-pl
+    AddLanguage pt .pt
+    AddLanguage pt-br .pt-br
+    AddLanguage ltz .lu
+    AddLanguage ca .ca
+    AddLanguage es .es
+    AddLanguage sv .sv
+    AddLanguage cz .cz
+    AddLanguage ru .ru
+    AddLanguage zh-tw .tw
+    AddLanguage tw .tw
+    AddCharset Big5         .Big5    .big5
+    AddCharset WINDOWS-1251 .cp-1251
+    AddCharset CP866        .cp866
+    AddCharset ISO-8859-5   .iso-ru
+    AddCharset KOI8-R       .koi8-r
+    AddCharset UCS-2        .ucs2
+    AddCharset UCS-4        .ucs4
+    AddCharset UTF-8        .utf8
+	
+#	DefaultLanguage de
+	
+    <IfModule mod_negotiation.c>
+        LanguagePriority en da nl et fr de el it ja kr no pl pt pt-br ru ltz ca es sv tw
+    </IfModule>
+    AddType application/x-tar .tgz
+	
+</IfModule>
+
+<IfModule mod_setenvif.c>
+    BrowserMatch "Mozilla/2" nokeepalive
+    BrowserMatch "MSIE 4\.0b2;" nokeepalive downgrade-1.0 force-response-1.0
+    BrowserMatch "RealPlayer 4\.0" force-response-1.0
+    BrowserMatch "Java/1\.0" force-response-1.0
+    BrowserMatch "JDK/1\.0" force-response-1.0
+</IfModule>
