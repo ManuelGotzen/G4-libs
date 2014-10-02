@@ -40,13 +40,7 @@ _Die offizielle API ist vollständig implementiert._
 Das Basis Modul des _Connectors_ ermöglicht, die Verwendung deiner Lichter und Gruppen mittels **ActionScript**, statt die Brücke direkt anzusprechen.  
   
   
-====  
-
-  
-  :open_file_folder:  
-  :page_facing_up:  
-
-
+====
 
 
 ====
