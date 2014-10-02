@@ -1,6 +1,9 @@
 {
     "name": "G4-libs",
-    "version": "3.1.4",
+    "version": "3.1.5", 
+    "sub": "Beta",
+    "status": "Development Environement",
+
     "ignore": [
         "**/.*",
 
@@ -21,6 +24,13 @@
     "authors": [
         "Manuel Gotzen <Manuel.Gotzen@gmail.de>"
     ],
-    "description": "G4 LIB Lightbox gallery plugin for Bootstrap 3",
-    "license": "GNU GENERAL PUBLIC LICENSE"
+    "description": "G4 | Framework", 
+    "G4": [
+        "lib": {
+           "name": "icons",
+           "description": "Icon List with Lightbox plugin for Bootstrap 3"
+        }
+    ],
+    
+    "license": "GNU GENERAL PRIVATE LICENSE"
 }
