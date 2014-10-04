@@ -4,7 +4,9 @@ __G4__ :octocat: Framework
 ## LIB
   
 [](![G4 Icons Preview](preview.png))
+<div class="embed-responsive embed-responsive-16by9">
 ![image](https://cloud.githubusercontent.com/assets/8329497/4480351/8bb248b8-4996-11e4-88bd-38bbc1feb141.jpg)
+</div>
 
 A free set of PNG icons in eleven sizes, black and white, from 16px to 4096px, with an accompanying list of colour codes. See The icons and colours at [G4UI.org](http://manuelgotzen.github.io/G4-libs).
 
