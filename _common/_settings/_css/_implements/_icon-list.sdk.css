@@ -1,0 +1,25 @@
+/***************************************************************************
+ G4    : Common Settings CSS Implements 
+ SDk.  : Icon List 
+ Owner : [Manuel Gotzen](https://github.com/ManuelGotzen/G4-libs/ .. /~~~~.css)
+***************************************************************************/
+
+			.icon-list {
+				margin: 0;
+				padding: 0;
+				list-style: none;
+			}
+			.icon-list:after {
+				content: " ";
+				display: table;
+				clear: both;
+			}
+			.icon-list li {
+				float: left;
+				margin: 0.25rem;
+				line-height: 0;
+			}
+			.icon-list li img {
+				height: 4rem;
+				width: 4rem;
+			}
